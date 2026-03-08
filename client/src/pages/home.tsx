@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import {
   Shield,
   ShieldCheck,
@@ -21,8 +20,19 @@ import {
   ArrowRight,
   Instagram,
   Facebook,
+  Linkedin,
+  LogIn,
+  ClipboardList,
+  MailOpen,
+  UserCheck,
+  Handshake,
+  CheckCircle2,
+  Send,
 } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+
+const WHATSAPP_URL = "https://grupotmseg.com.br/whats";
+const LOGIN_URL = "https://app.cryzo.com.br/login/grupotmseg?status=signin";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,8 +45,8 @@ function Header() {
   }, []);
 
   const navLinks = [
-    { label: "Inicio", href: "#inicio" },
-    { label: "Servicos", href: "#servicos" },
+    { label: "Início", href: "#inicio" },
+    { label: "Serviços", href: "#servicos" },
     { label: "Diferenciais", href: "#diferenciais" },
     { label: "Parceiros", href: "#parceiros" },
     { label: "Sobre", href: "#sobre" },
@@ -63,7 +73,7 @@ function Header() {
                 GRUPO TM SEG
               </span>
               <span className="text-orange-400 text-[10px] uppercase tracking-[0.2em] leading-tight">
-                Servicos em Seguranca
+                Serviços em Segurança
               </span>
             </div>
           </a>
@@ -74,16 +84,31 @@ function Header() {
                 key={link.href}
                 href={link.href}
                 className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider"
-                data-testid={`link-nav-${link.label.toLowerCase()}`}
+                data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-3">
             <a
-              href="https://wa.me/5511999999999"
+              href={LOGIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="button-login"
+            >
+              <Button
+                size="sm"
+                variant="outline"
+                className="border-white/20 text-white bg-white/5 font-medium text-sm"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Entrar
+              </Button>
+            </a>
+            <a
+              href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="button-whatsapp-header"
@@ -124,17 +149,34 @@ function Header() {
                   href={link.href}
                   className="block text-gray-300 hover:text-orange-400 transition-colors px-4 py-3 text-sm font-medium uppercase tracking-wider"
                   onClick={() => setMobileMenuOpen(false)}
-                  data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                  data-testid={`link-mobile-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-4">
-                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">
+              <div className="pt-4 space-y-3">
+                <a href={LOGIN_URL} target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline" className="w-full border-white/20 text-white bg-white/5 font-medium mb-3">
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Entrar
+                  </Button>
+                </a>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                   <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold">
                     <Phone className="w-4 h-4 mr-2" />
                     Fale Conosco
                   </Button>
+                </a>
+              </div>
+              <div className="flex justify-center gap-4 pt-4 border-t border-white/10 mt-4">
+                <a href="https://instagram.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-instagram">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="https://facebook.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-facebook">
+                  <Facebook className="w-5 h-5" />
+                </a>
+                <a href="https://linkedin.com/company/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-linkedin">
+                  <Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -155,7 +197,7 @@ function HeroSection() {
       <div className="absolute inset-0">
         <img
           src="/images/hero-bg.png"
-          alt="Seguranca"
+          alt="Segurança"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628]/95 via-[#0a1628]/80 to-[#0a1628]/60" />
@@ -172,7 +214,7 @@ function HeroSection() {
             <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 rounded-full px-4 py-2 mb-8">
               <ShieldCheck className="w-4 h-4 text-orange-400" />
               <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">
-                Seguranca Especializada
+                Segurança Especializada
               </span>
             </div>
           </motion.div>
@@ -184,7 +226,7 @@ function HeroSection() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
             data-testid="text-hero-title"
           >
-            Garanta a seguranca dos seus ativos{" "}
+            Garanta a segurança dos seus ativos{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
               com a nossa equipe de especialistas
             </span>
@@ -197,8 +239,8 @@ function HeroSection() {
             className="text-gray-300 text-lg sm:text-xl mb-10 leading-relaxed max-w-2xl"
             data-testid="text-hero-description"
           >
-            Solucoes completas em escolta armada, pronta resposta e
-            acompanhamento logistico em todo o territorio nacional.
+            Soluções completas em escolta armada, pronta resposta e
+            acompanhamento logístico em todo o território nacional.
           </motion.p>
 
           <motion.div
@@ -213,18 +255,18 @@ function HeroSection() {
                 className="bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold text-base px-8"
                 data-testid="button-hero-services"
               >
-                Nossos Servicos
+                Nossos Serviços
                 <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
             </a>
-            <a href="#contato">
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-white/30 text-white bg-white/5 backdrop-blur-sm font-semibold text-base px-8"
                 data-testid="button-hero-contact"
               >
-                Entre em Contato
+                Fale Conosco
               </Button>
             </a>
           </motion.div>
@@ -240,23 +282,30 @@ const services = [
   {
     title: "Pronta Resposta",
     description:
-      "Oferecemos pronta resposta de carga 24/7, garantindo atendimento rapido para emergencias de transporte e seguranca de cargas.",
+      "Oferecemos pronta resposta de carga 24/7, garantindo atendimento rápido para emergências de transporte e segurança de cargas.",
     icon: Zap,
     image: "/images/service-pronta-resposta.png",
   },
   {
     title: "Escolta Armada",
     description:
-      "Nosso servico de escolta armada oferece seguranca total para o transporte de bens valiosos e pessoas, combinando planejamento estrategico, tecnologia avancada e expertise profissional.",
+      "Nosso serviço de escolta armada oferece segurança total para o transporte de bens valiosos e pessoas, combinando planejamento estratégico, tecnologia avançada e expertise profissional.",
     icon: Shield,
     image: "/images/service-escolta.png",
   },
   {
     title: "Moto Acompanhamento",
     description:
-      "Nosso servico de acompanhamento motorizado oferece uma vigilancia proativa e flexivel, garantindo uma presenca de seguranca constante e uma resposta rapida a quaisquer incidentes.",
+      "Nosso serviço de acompanhamento motorizado oferece uma vigilância proativa e flexível, garantindo uma presença de segurança constante e uma resposta rápida a quaisquer incidentes.",
     icon: Bike,
     image: "/images/service-moto.png",
+  },
+  {
+    title: "Serviço de Guincho",
+    description:
+      "Oferecemos serviço de guincho especializado para situações emergenciais, garantindo a remoção e transporte seguro de veículos e cargas com agilidade e eficiência.",
+    icon: Truck,
+    image: "/images/service-pronta-resposta.png",
   },
 ];
 
@@ -288,29 +337,29 @@ function ServicesSection() {
             O que fazemos
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-services-title">
-            Nossos Servicos
+            Nossos Serviços
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-            Em nossa jornada, mantemos o compromisso inabalavel com a seguranca.
-            Nossos valores refletem a prioridade que damos a integridade e ao
-            comprometimento com nossos clientes. Nossa equipe e certificada e
-            qualificada para oferecer servicos de alta qualidade.
+            Em nossa jornada, mantemos o compromisso inabalável com a segurança.
+            Nossos valores refletem a prioridade que damos à integridade e ao
+            comprometimento com nossos clientes. Nossa equipe é certificada e
+            qualificada para oferecer serviços de alta qualidade.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <div
                 className="group relative bg-[#111d33] rounded-md border border-white/5 overflow-hidden h-full flex flex-col"
                 data-testid={`card-service-${index}`}
               >
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
@@ -354,30 +403,30 @@ function ServicesSection() {
 const differentials = [
   {
     icon: Eye,
-    title: "Compromisso com a Seguranca Total",
+    title: "Compromisso com a Segurança Total",
     description:
-      "Na TM Prestacao de Servicos, nossa prioridade e a sua seguranca. Comprometemo-nos a oferecer solucoes abrangentes e personalizadas que garantam a protecao de seus ativos e a tranquilidade de sua operacao.",
+      "Na TM Prestação de Serviços, nossa prioridade é a sua segurança. Comprometemo-nos a oferecer soluções abrangentes e personalizadas que garantam a proteção de seus ativos e a tranquilidade de sua operação.",
     image: "/images/icon-camera.png",
   },
   {
     icon: Zap,
     title: "Pronta Resposta Personalizada",
     description:
-      "Estamos sempre prontos para agir com rapidez e eficiencia. Nossa equipe especializada oferece uma resposta agil em situacoes de emergencia, realizando averiguacoes, preservacao de areas, atendimento a antenistas e seguranca patrimonial.",
+      "Estamos sempre prontos para agir com rapidez e eficiência. Nossa equipe especializada oferece uma resposta ágil em situações de emergência, realizando averiguações, preservação de áreas, atendimento a antenistas e segurança patrimonial.",
     image: "/images/icon-response.png",
   },
   {
     icon: MapPin,
-    title: "Caracterizacao e Rastreamento",
+    title: "Caracterização e Rastreamento",
     description:
-      "Nossa tecnologia de ponta oferece caracterizacao e rastreamento de ultima geracao, assegurando maxima seguranca e um monitoramento eficaz em tempo real. Mantenha-se informado e protegido em cada etapa.",
+      "Nossa tecnologia de ponta oferece caracterização e rastreamento de última geração, assegurando máxima segurança e um monitoramento eficaz em tempo real. Mantenha-se informado e protegido em cada etapa.",
     image: "/images/icon-tracking.png",
   },
   {
     icon: Shield,
     title: "Escolta Armada Especializada",
     description:
-      "Conte com nossa equipe altamente capacitada para atividades especializadas em escolta armada. Priorizamos a seguranca e a eficiencia em todas as nossas operacoes.",
+      "Conte com nossa equipe altamente capacitada para atividades especializadas em escolta armada. Priorizamos a segurança e a eficiência em todas as nossas operações.",
     image: "/images/icon-shield.png",
   },
 ];
@@ -406,7 +455,7 @@ function DifferentialsSection() {
             Nossos Diferenciais
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-            Confie em nossa experiencia e dedicacao para manter seu negocio
+            Confie em nossa experiência e dedicação para manter seu negócio
             seguro e protegido em todos os momentos.
           </p>
         </motion.div>
@@ -445,36 +494,70 @@ function DifferentialsSection() {
   );
 }
 
+function StatsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const stats = [
+    { value: "500+", label: "Operações Realizadas" },
+    { value: "24/7", label: "Atendimento" },
+    { value: "100%", label: "Compromisso" },
+    { value: "50+", label: "Parceiros Ativos" },
+  ];
+
+  return (
+    <section className="py-20 bg-gradient-to-r from-[#0c1829] to-[#0a1628] relative" data-testid="section-stats">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="text-center"
+            >
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2" data-testid={`text-stat-value-${index}`}>
+                {stat.value}
+              </div>
+              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider" data-testid={`text-stat-label-${index}`}>
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const embarcadores = [
-  { name: "Claro" },
-  { name: "Mary Kay" },
-  { name: "Carrefour" },
-  { name: "Bless Foods" },
-  { name: "FBM" },
-  { name: "HP" },
+  { name: "Claro", url: "https://www.claro.com.br/" },
+  { name: "Mary Kay", url: "https://www.marykay.com.br/" },
+  { name: "Carrefour", url: "https://www.carrefour.com.br/" },
+  { name: "Bless Foods", url: "https://www.instagram.com/blessfoodsbr/" },
+  { name: "FBM", url: "https://www.fbm.ind.br/" },
+  { name: "HP", url: "https://www.hp.com/" },
 ];
 
 const transportadoras = [
-  { name: "RN Logistica" },
-  { name: "Poloni" },
-  { name: "Luft" },
-  { name: "Cesari" },
-  { name: "CEVA" },
-  { name: "Marvel" },
-  { name: "Maroni" },
+  { name: "RN Logística", url: "https://www.rnlogistica.com.br/" },
+  { name: "Poloni", url: "https://www.trpoloni.com.br/" },
+  { name: "Luft", url: "https://www.luft.com.br/" },
+  { name: "Cesari", url: "https://www.grupocesari.com.br/" },
+  { name: "CEVA", url: "https://www.cevalogistics.com/" },
+  { name: "Maroni", url: "https://www.grupomaronibrasil.com.br/" },
 ];
 
 const parceirosGR = [
-  { name: "JC Gestao de Riscos" },
-  { name: "Opentech" },
-  { name: "Mundial Risk" },
-  { name: "Buonny" },
-  { name: "BRK" },
-  { name: "Skymark" },
-  { name: "IBL" },
+  { name: "JC Gestão de Riscos", url: "https://www.jcgestaoderiscos.com.br/" },
+  { name: "Opentech", url: "https://opentechgr.com.br/" },
+  { name: "Mundial Risk", url: "https://www.mundialrisk.com.br/" },
+  { name: "Buonny", url: "https://www.buonny.com.br/" },
+  { name: "BRK", url: "https://www.brktecnologia.com.br/" },
 ];
 
-function PartnerLogoRow({ partners, direction = "left" }: { partners: { name: string }[]; direction?: string }) {
+function PartnerLogoRow({ partners }: { partners: { name: string; url: string }[] }) {
   const doubled = [...partners, ...partners];
   return (
     <div className="overflow-hidden relative">
@@ -485,15 +568,18 @@ function PartnerLogoRow({ partners, direction = "left" }: { partners: { name: st
         style={{ width: "max-content" }}
       >
         {doubled.map((partner, i) => (
-          <div
+          <a
             key={`${partner.name}-${i}`}
-            className="flex-shrink-0 w-36 h-24 bg-[#111d33] rounded-md border border-white/5 flex items-center justify-center px-4 hover:border-orange-500/30 transition-colors"
+            href={partner.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 w-36 h-24 bg-[#111d33] rounded-md border border-white/5 flex items-center justify-center px-4 hover:border-orange-500/30 transition-colors cursor-pointer"
             data-testid={`partner-logo-${partner.name.toLowerCase().replace(/\s+/g, "-")}-${i}`}
           >
-            <span className="text-gray-400 text-sm font-semibold text-center leading-tight">
+            <span className="text-gray-400 text-sm font-semibold text-center leading-tight hover:text-orange-400 transition-colors">
               {partner.name}
             </span>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -507,7 +593,7 @@ function PartnersSection() {
   const categories = [
     { title: "Embarcadores", partners: embarcadores },
     { title: "Transportadoras", partners: transportadoras },
-    { title: "Parceiros GR", partners: parceirosGR },
+    { title: "Parceiros de GR", partners: parceirosGR },
   ];
 
   return (
@@ -524,7 +610,7 @@ function PartnersSection() {
           className="text-center mb-16"
         >
           <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
-            Quem confia em nos
+            Quem confia em nós
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-partners-title">
             Nossos Parceiros
@@ -546,6 +632,55 @@ function PartnersSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CredenciadoSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section
+      id="credenciado"
+      className="py-20 relative overflow-hidden"
+      data-testid="section-credenciado"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+          backgroundSize: "30px 30px"
+        }} />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-credenciado-title">
+            Seja credenciado pela TMSEG e{" "}
+            <br className="hidden sm:block" />
+            aumente seus ganhos mensais!
+          </h2>
+          <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
+            Junte-se à nossa rede de parceiros credenciados e expanda suas oportunidades de negócio.
+          </p>
+          <a href="#contato">
+            <Button
+              size="lg"
+              className="bg-white text-orange-600 border-none font-bold text-base px-10"
+              data-testid="button-credenciado-contact"
+            >
+              Quero me Credenciar
+              <ChevronRight className="w-5 h-5 ml-2" />
+            </Button>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -591,22 +726,36 @@ function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
-              Sobre nos
+              Sobre nós
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6" data-testid="text-about-title">
               Quem Somos
             </h2>
-            <p className="text-gray-400 text-base leading-relaxed mb-6">
-              O GRUPO TM SEG se posiciona como um parceiro estrategico, dedicado a
-              oferecer solucoes de excelencia na intermediacao de servicos
+            <p className="text-gray-400 text-base leading-relaxed mb-4">
+              O GRUPO TM SEG se posiciona como um parceiro estratégico, dedicado a
+              oferecer soluções de excelência na intermediação de serviços
               especializados em Escolta Armada, Pronta Resposta, Acompanhamento
-              Logistico em todo o territorio nacional.
+              Logístico em todo o território nacional.
+            </p>
+            <p className="text-gray-400 text-base leading-relaxed mb-4">
+              Nossa missão é conectar você aos melhores profissionais e empresas
+              do setor, garantindo que cada projeto seja executado com a máxima
+              eficiência, confiabilidade e dentro dos mais altos padrões de
+              segurança e qualidade.
+            </p>
+            <p className="text-gray-400 text-base leading-relaxed mb-4">
+              Através de uma vasta rede de parceiros de confiança, oferecemos
+              serviços que abrangem desde a escolta armada até a pronta resposta,
+              garantindo a proteção e o acompanhamento logístico de cargas em todo
+              o Brasil. Nosso compromisso é assegurar que nossos clientes tenham
+              acesso aos melhores recursos disponíveis no mercado.
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-8">
-              Nossa missao e conectar voce aos melhores profissionais e empresas
-              do setor, garantindo que cada projeto seja executado com a maxima
-              eficiencia, confiabilidade e dentro dos mais altos padroes de
-              seguranca e qualidade.
+              Com uma equipe dedicada e experiente, trabalhamos incansavelmente
+              para superar expectativas e entregar resultados que reforcem a
+              segurança e a confiança em cada operação. Nosso objetivo é ser a
+              referência em intermediação de serviços de segurança, sempre com
+              foco na excelência e na satisfação do cliente.
             </p>
 
             <div className="grid grid-cols-2 gap-6 mb-8">
@@ -615,8 +764,8 @@ function AboutSection() {
                   <Target className="w-5 h-5 text-orange-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold text-sm mb-1">Missao</h4>
-                  <p className="text-gray-500 text-xs">Excelencia em seguranca</p>
+                  <h4 className="text-white font-semibold text-sm mb-1">Missão</h4>
+                  <p className="text-gray-500 text-xs">Excelência em segurança</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -624,8 +773,8 @@ function AboutSection() {
                   <Eye className="w-5 h-5 text-orange-400" />
                 </div>
                 <div>
-                  <h4 className="text-white font-semibold text-sm mb-1">Visao</h4>
-                  <p className="text-gray-500 text-xs">Referencia no setor</p>
+                  <h4 className="text-white font-semibold text-sm mb-1">Visão</h4>
+                  <p className="text-gray-500 text-xs">Referência no setor</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -665,46 +814,80 @@ function AboutSection() {
   );
 }
 
-function StatsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const stats = [
-    { value: "500+", label: "Operacoes Realizadas" },
-    { value: "24/7", label: "Atendimento" },
-    { value: "100%", label: "Compromisso" },
-    { value: "50+", label: "Parceiros Ativos" },
-  ];
-
-  return (
-    <section className="py-20 bg-gradient-to-r from-[#0c1829] to-[#0a1628] relative" data-testid="section-stats">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="text-center"
-            >
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2" data-testid={`text-stat-value-${index}`}>
-                {stat.value}
-              </div>
-              <div className="text-gray-400 text-sm font-medium uppercase tracking-wider" data-testid={`text-stat-label-${index}`}>
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+const budgetSteps = [
+  {
+    icon: ClipboardList,
+    title: "Orçamento",
+    description: "Preencha o formulário com os dados",
+  },
+  {
+    icon: MailOpen,
+    title: "Recebimento",
+    description: "Confirmamos o recebimento de sua solicitação por e-mail",
+  },
+  {
+    icon: UserCheck,
+    title: "Proposta",
+    description: "Enviamos a proposta o mais breve possível",
+  },
+  {
+    icon: Handshake,
+    title: "Contrato",
+    description: "Assinamos o contrato para início do atendimento",
+  },
+];
 
 function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [formData, setFormData] = useState({
+    nome: "",
+    empresa: "",
+    email: "",
+    celular: "",
+    telefone: "",
+    mensagem: "",
+    servicos: [] as string[],
+    aceite: false,
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const serviceOptions = [
+    "Pronta Resposta",
+    "Escolta Armada",
+    "Moto Acompanhamento",
+    "Serviço de Guincho",
+  ];
+
+  const handleServiceToggle = (service: string) => {
+    setFormData(prev => ({
+      ...prev,
+      servicos: prev.servicos.includes(service)
+        ? prev.servicos.filter(s => s !== service)
+        : [...prev.servicos, service],
+    }));
+  };
+
+  const mascaraCelular = (valor: string) => {
+    valor = valor.replace(/\D/g, "");
+    valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
+    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+    return valor.substring(0, 15);
+  };
+
+  const mascaraTelefone = (valor: string) => {
+    valor = valor.replace(/\D/g, "");
+    valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
+    valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+    return valor.substring(0, 14);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.aceite) return;
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
   return (
     <section
@@ -717,52 +900,197 @@ function ContactSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
             Fale conosco
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-contact-title">
-            Entre em Contato
+            Fale com nosso time de especialistas e descubra{" "}
+            <br className="hidden md:block" />
+            por que somos a melhor solução para seu negócio!
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Estamos prontos para atender suas necessidades de seguranca.
-            Entre em contato conosco agora mesmo.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8 text-center h-full" data-testid="card-contact-phone">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Phone className="w-7 h-7 text-orange-400" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+        >
+          {budgetSteps.map((step, index) => (
+            <div key={step.title} className="text-center" data-testid={`budget-step-${index}`}>
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <step.icon className="w-7 h-7 text-orange-400" />
               </div>
-              <h3 className="text-white font-bold text-lg mb-3">Telefone</h3>
-              <p className="text-gray-400 text-sm mb-4">Ligue para nos agora</p>
-              <a href="tel:+551199999999" className="text-orange-400 font-semibold hover:text-orange-300 transition-colors" data-testid="link-phone">
-                (11) 9999-9999
-              </a>
+              <h3 className="text-white font-bold text-base mb-2">{step.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
             </div>
-          </motion.div>
+          ))}
+        </motion.div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-3"
           >
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8 text-center h-full" data-testid="card-contact-email">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Mail className="w-7 h-7 text-orange-400" />
-              </div>
-              <h3 className="text-white font-bold text-lg mb-3">E-mail</h3>
-              <p className="text-gray-400 text-sm mb-4">Envie sua mensagem</p>
-              <a href="mailto:contato@grupotmseg.com.br" className="text-orange-400 font-semibold hover:text-orange-300 transition-colors" data-testid="link-email">
-                contato@grupotmseg.com.br
-              </a>
+            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-form">
+              <h3 className="text-xl font-bold text-white mb-6">Orçamento</h3>
+
+              {submitted ? (
+                <div className="text-center py-12" data-testid="form-success">
+                  <CheckCircle2 className="w-16 h-16 text-green-400 mx-auto mb-4" />
+                  <h4 className="text-white text-xl font-bold mb-2">Mensagem Enviada!</h4>
+                  <p className="text-gray-400">Entraremos em contato em breve.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4" data-testid="contact-form">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-1">Nome *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.nome}
+                        onChange={e => setFormData(p => ({ ...p, nome: e.target.value }))}
+                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        placeholder="Seu nome"
+                        data-testid="input-nome"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-1">Empresa</label>
+                      <input
+                        type="text"
+                        value={formData.empresa}
+                        onChange={e => setFormData(p => ({ ...p, empresa: e.target.value }))}
+                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        placeholder="Nome da empresa"
+                        data-testid="input-empresa"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-1">E-mail *</label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                      className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                      placeholder="seu@email.com"
+                      data-testid="input-email"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-1">Celular</label>
+                      <input
+                        type="text"
+                        value={formData.celular}
+                        onChange={e => setFormData(p => ({ ...p, celular: mascaraCelular(e.target.value) }))}
+                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        placeholder="(00) 00000-0000"
+                        data-testid="input-celular"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-300 text-sm font-medium mb-1">Telefone</label>
+                      <input
+                        type="text"
+                        value={formData.telefone}
+                        onChange={e => setFormData(p => ({ ...p, telefone: mascaraTelefone(e.target.value) }))}
+                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        placeholder="(00) 0000-0000"
+                        data-testid="input-telefone"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-2">Serviços</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {serviceOptions.map(service => (
+                        <label
+                          key={service}
+                          className="flex items-center gap-2 cursor-pointer group"
+                          data-testid={`checkbox-service-${service.toLowerCase().replace(/\s+/g, "-")}`}
+                        >
+                          <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
+                            formData.servicos.includes(service)
+                              ? "bg-orange-500 border-orange-500"
+                              : "border-white/20 bg-transparent"
+                          }`}>
+                            {formData.servicos.includes(service) && (
+                              <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                          </div>
+                          <input
+                            type="checkbox"
+                            className="hidden"
+                            checked={formData.servicos.includes(service)}
+                            onChange={() => handleServiceToggle(service)}
+                          />
+                          <span className="text-gray-300 text-sm group-hover:text-orange-400 transition-colors">
+                            {service}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-300 text-sm font-medium mb-1">Mensagem</label>
+                    <textarea
+                      rows={4}
+                      value={formData.mensagem}
+                      onChange={e => setFormData(p => ({ ...p, mensagem: e.target.value }))}
+                      className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors resize-none"
+                      placeholder="Descreva sua necessidade..."
+                      data-testid="input-mensagem"
+                    />
+                  </div>
+
+                  <label className="flex items-start gap-2 cursor-pointer" data-testid="checkbox-aceite">
+                    <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors mt-0.5 flex-shrink-0 ${
+                      formData.aceite
+                        ? "bg-orange-500 border-orange-500"
+                        : "border-white/20 bg-transparent"
+                    }`}>
+                      {formData.aceite && (
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <input
+                      type="checkbox"
+                      className="hidden"
+                      checked={formData.aceite}
+                      onChange={e => setFormData(p => ({ ...p, aceite: e.target.checked }))}
+                    />
+                    <span className="text-gray-400 text-sm">
+                      Aceito os termos de uso e política de privacidade
+                    </span>
+                  </label>
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold text-base"
+                    data-testid="button-submit-form"
+                  >
+                    <Send className="w-5 h-5 mr-2" />
+                    Enviar Mensagem
+                  </Button>
+                </form>
+              )}
             </div>
           </motion.div>
 
@@ -770,17 +1098,63 @@ function ContactSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-2 space-y-6"
           >
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8 text-center h-full" data-testid="card-contact-hours">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Clock className="w-7 h-7 text-orange-400" />
+            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-info">
+              <h3 className="text-white font-bold text-lg mb-6">Informações de Contato</h3>
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-sm">E-mail</h4>
+                    <a href="mailto:contato@grupotmseg.com.br" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-email">
+                      contato@grupotmseg.com.br
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-sm">Horário</h4>
+                    <p className="text-orange-400 text-sm font-semibold" data-testid="text-hours">24/7 - Todos os dias</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-white font-bold text-lg mb-3">Horario</h3>
-              <p className="text-gray-400 text-sm mb-4">Atendimento 24 horas</p>
-              <span className="text-orange-400 font-semibold" data-testid="text-hours">
-                24/7 - Todos os dias
-              </span>
             </div>
+
+            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-text">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Estamos felizes em saber que você deseja se conectar conosco!
+              </p>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                Seja para esclarecer dúvidas, fornecer feedback ou solicitar informações, estamos prontos para ajudar. Nossa equipe está comprometida em oferecer um atendimento rápido e eficiente, garantindo que suas necessidades sejam atendidas com a máxima prioridade.
+              </p>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Sua opinião e suas perguntas são importantes para nós, pois nos ajudam a melhorar continuamente e a oferecer o melhor suporte possível.
+              </p>
+            </div>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Button
+                size="lg"
+                className="w-full bg-green-600 hover:bg-green-700 text-white border-none font-semibold text-base"
+                data-testid="button-whatsapp-contact"
+              >
+                <Phone className="w-5 h-5 mr-2" />
+                Fale pelo WhatsApp
+              </Button>
+            </a>
           </motion.div>
         </div>
       </div>
@@ -803,19 +1177,19 @@ function Footer() {
                   GRUPO TM SEG
                 </span>
                 <span className="text-orange-400 text-[10px] uppercase tracking-[0.2em]">
-                  Servicos em Seguranca
+                  Serviços em Segurança
                 </span>
               </div>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Solucoes completas em seguranca para transporte de cargas e
-              acompanhamento logistico em todo o Brasil.
+              Soluções completas em segurança para transporte de cargas e
+              acompanhamento logístico em todo o Brasil.
             </p>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">
-              Servicos
+              Serviços
             </h4>
             <ul className="space-y-3">
               <li>
@@ -833,6 +1207,11 @@ function Footer() {
                   Moto Acompanhamento
                 </a>
               </li>
+              <li>
+                <a href="#servicos" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-guincho">
+                  Serviço de Guincho
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -843,7 +1222,7 @@ function Footer() {
             <ul className="space-y-3">
               <li>
                 <a href="#sobre" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-about">
-                  Sobre Nos
+                  Sobre Nós
                 </a>
               </li>
               <li>
@@ -861,6 +1240,11 @@ function Footer() {
                   Contato
                 </a>
               </li>
+              <li>
+                <a href={LOGIN_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-login">
+                  Área do Cliente
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -869,12 +1253,6 @@ function Footer() {
               Contato
             </h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-orange-400 flex-shrink-0" />
-                <a href="tel:+551199999999" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-phone">
-                  (11) 9999-9999
-                </a>
-              </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-orange-400 flex-shrink-0" />
                 <a href="mailto:contato@grupotmseg.com.br" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-email">
@@ -889,7 +1267,7 @@ function Footer() {
 
             <div className="flex gap-3 mt-6">
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/grupotmseg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
@@ -898,13 +1276,22 @@ function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://facebook.com/grupotmseg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
                 data-testid="link-social-facebook"
               >
                 <Facebook className="w-5 h-5" />
+              </a>
+              <a
+                href="https://linkedin.com/company/grupotmseg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
+                data-testid="link-social-linkedin"
+              >
+                <Linkedin className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -917,7 +1304,7 @@ function Footer() {
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-600 hover:text-gray-400 text-sm transition-colors" data-testid="link-privacy">
-                Politica de Privacidade
+                Política de Privacidade
               </a>
               <a href="#" className="text-gray-600 hover:text-gray-400 text-sm transition-colors" data-testid="link-terms">
                 Termos de Uso
@@ -939,6 +1326,7 @@ export default function Home() {
       <DifferentialsSection />
       <StatsSection />
       <PartnersSection />
+      <CredenciadoSection />
       <AboutSection />
       <ContactSection />
       <Footer />
