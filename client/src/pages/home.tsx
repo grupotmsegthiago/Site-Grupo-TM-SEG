@@ -63,7 +63,7 @@ function Header() {
       data-testid="header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#0a1628]/95 backdrop-blur-md shadow-lg shadow-black/20"
+          ? "bg-[#000000]/95 backdrop-blur-md shadow-lg shadow-black/20"
           : "bg-transparent"
       }`}
     >
@@ -83,19 +83,19 @@ function Header() {
                 <div key={link.label} className="relative group">
                   <a
                     href={link.href}
-                    className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider inline-flex items-center gap-1"
+                    className="text-gray-300 hover:text-red-500 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider inline-flex items-center gap-1"
                     data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
                   >
                     {link.label}
                     <ChevronRight className="w-3 h-3 rotate-90 transition-transform group-hover:rotate-[270deg]" />
                   </a>
                   <div className="absolute top-full left-0 pt-2 hidden group-hover:block z-50">
-                    <div className="bg-[#0a1628]/95 backdrop-blur-md border border-white/10 rounded-md py-2 min-w-[200px]">
+                    <div className="bg-[#000000]/95 backdrop-blur-md border border-white/10 rounded-md py-2 min-w-[200px]">
                       {link.submenu.map((sub) => (
                         <a
                           key={sub.label}
                           href={sub.href}
-                          className="block text-gray-300 hover:text-orange-400 hover:bg-white/5 transition-colors px-4 py-2 text-sm"
+                          className="block text-gray-300 hover:text-red-500 hover:bg-white/5 transition-colors px-4 py-2 text-sm"
                           data-testid={`link-nav-sub-${sub.label.toLowerCase().replace(/\s+/g, "-")}`}
                         >
                           {sub.label}
@@ -108,7 +108,7 @@ function Header() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider"
+                  className="text-gray-300 hover:text-red-500 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider"
                   data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
                 >
                   {link.label}
@@ -141,7 +141,7 @@ function Header() {
             >
               <Button
                 size="sm"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold"
+                className="bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold"
               >
                 <Phone className="w-4 h-4 mr-2" />
                 Fale Conosco
@@ -165,7 +165,7 @@ function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#0a1628]/98 backdrop-blur-lg border-t border-white/10"
+            className="lg:hidden bg-[#000000]/98 backdrop-blur-lg border-t border-white/10"
             data-testid="nav-mobile"
           >
             <div className="px-4 py-6 space-y-1">
@@ -173,7 +173,7 @@ function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-gray-300 hover:text-orange-400 transition-colors px-4 py-3 text-sm font-medium uppercase tracking-wider"
+                  className="block text-gray-300 hover:text-red-500 transition-colors px-4 py-3 text-sm font-medium uppercase tracking-wider"
                   onClick={() => setMobileMenuOpen(false)}
                   data-testid={`link-mobile-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
                 >
@@ -188,20 +188,20 @@ function Header() {
                   </Button>
                 </a>
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold">
+                  <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold">
                     <Phone className="w-4 h-4 mr-2" />
                     Fale Conosco
                   </Button>
                 </a>
               </div>
               <div className="flex justify-center gap-4 pt-4 border-t border-white/10 mt-4">
-                <a href="https://instagram.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-instagram">
+                <a href="https://instagram.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" data-testid="link-mobile-instagram">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://facebook.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-facebook">
+                <a href="https://facebook.com/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" data-testid="link-mobile-facebook">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="https://linkedin.com/company/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-400 transition-colors" data-testid="link-mobile-linkedin">
+                <a href="https://linkedin.com/company/grupotmseg" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" data-testid="link-mobile-linkedin">
                   <Linkedin className="w-5 h-5" />
                 </a>
               </div>
@@ -226,8 +226,8 @@ function HeroSection() {
           alt="Segurança"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628]/95 via-[#0a1628]/80 to-[#0a1628]/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-transparent to-[#0a1628]/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#000000]/95 via-[#000000]/80 to-[#000000]/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-[#000000]/40" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -237,9 +237,9 @@ function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 rounded-full px-4 py-2 mb-8">
-              <ShieldCheck className="w-4 h-4 text-orange-400" />
-              <span className="text-orange-400 text-sm font-medium uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-600/30 rounded-full px-4 py-2 mb-8">
+              <ShieldCheck className="w-4 h-4 text-red-500" />
+              <span className="text-red-500 text-sm font-medium uppercase tracking-wider">
                 Segurança Especializada
               </span>
             </div>
@@ -253,7 +253,7 @@ function HeroSection() {
             data-testid="text-hero-title"
           >
             Garanta a segurança do seus ativos{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-500">
               com a nossa equipe de especialistas
             </span>
           </motion.h1>
@@ -278,7 +278,7 @@ function HeroSection() {
             <a href="#servicos">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold text-base px-8"
+                className="bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold text-base px-8"
                 data-testid="button-hero-services"
               >
                 Nossos Serviços
@@ -299,7 +299,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0a1628] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#000000] to-transparent" />
     </section>
   );
 }
@@ -342,7 +342,7 @@ function ServicesSection() {
   return (
     <section
       id="servicos"
-      className="py-24 bg-[#0a1628] relative"
+      className="py-24 bg-[#000000] relative"
       data-testid="section-services"
     >
       <div className="absolute inset-0 opacity-5">
@@ -359,7 +359,7 @@ function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
+          <span className="text-red-500 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
             O que fazemos
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-services-title">
@@ -382,7 +382,7 @@ function ServicesSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <div
-                className="group relative bg-[#111d33] rounded-md border border-white/5 overflow-hidden h-full flex flex-col"
+                className="group relative bg-[#1a1a1a] rounded-md border border-white/5 overflow-hidden h-full flex flex-col"
                 data-testid={`card-service-${index}`}
               >
                 <div className="relative h-48 overflow-hidden">
@@ -391,9 +391,9 @@ function ServicesSection() {
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111d33] via-[#111d33]/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-500 rounded-md flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-md flex items-center justify-center">
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
@@ -409,7 +409,7 @@ function ServicesSection() {
                   <div className="mt-6">
                     <a
                       href="#contato"
-                      className="inline-flex items-center text-orange-400 text-sm font-semibold group/link"
+                      className="inline-flex items-center text-red-500 text-sm font-semibold group/link"
                       data-testid={`link-service-more-${index}`}
                     >
                       Saiba mais
@@ -464,7 +464,7 @@ function DifferentialsSection() {
   return (
     <section
       id="diferenciais"
-      className="py-24 bg-[#0e1a2e] relative"
+      className="py-24 bg-[#0d0d0d] relative"
       data-testid="section-differentials"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -474,7 +474,7 @@ function DifferentialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
+          <span className="text-red-500 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
             Por que nos escolher
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-differentials-title">
@@ -495,12 +495,12 @@ function DifferentialsSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <div
-                className="group flex gap-6 p-6 rounded-md bg-[#111d33]/60 border border-white/5 hover:border-orange-500/20 transition-all duration-300"
+                className="group flex gap-6 p-6 rounded-md bg-[#1a1a1a]/60 border border-white/5 hover:border-red-600/20 transition-all duration-300"
                 data-testid={`card-differential-${index}`}
               >
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-md flex items-center justify-center">
-                    <item.icon className="w-8 h-8 text-orange-400" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-600/20 rounded-md flex items-center justify-center">
+                    <item.icon className="w-8 h-8 text-red-500" />
                   </div>
                 </div>
                 <div>
@@ -532,7 +532,7 @@ function StatsSection() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#0c1829] to-[#0a1628] relative" data-testid="section-stats">
+    <section className="py-20 bg-gradient-to-r from-[#0d0d0d] to-[#000000] relative" data-testid="section-stats">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -543,7 +543,7 @@ function StatsSection() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="text-center"
             >
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400 mb-2" data-testid={`text-stat-value-${index}`}>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-red-500 mb-2" data-testid={`text-stat-value-${index}`}>
                 {stat.value}
               </div>
               <div className="text-gray-400 text-sm font-medium uppercase tracking-wider" data-testid={`text-stat-label-${index}`}>
@@ -590,8 +590,8 @@ function PartnerLogoRow({ partners }: { partners: { name: string; url: string; l
   const doubled = [...partners, ...partners];
   return (
     <div className="overflow-hidden relative">
-      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#0a1628] to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a1628] to-transparent z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#000000] to-transparent z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#000000] to-transparent z-10" />
       <div
         className="flex gap-8 animate-scroll-left"
         style={{ width: "max-content" }}
@@ -602,7 +602,7 @@ function PartnerLogoRow({ partners }: { partners: { name: string; url: string; l
             href={partner.url}
             target={partner.url !== "#" ? "_blank" : undefined}
             rel={partner.url !== "#" ? "noopener noreferrer" : undefined}
-            className="flex-shrink-0 w-40 h-28 bg-[#111d33] rounded-md border border-white/5 flex items-center justify-center p-4 hover:border-orange-500/30 transition-colors cursor-pointer"
+            className="flex-shrink-0 w-40 h-28 bg-[#1a1a1a] rounded-md border border-white/5 flex items-center justify-center p-4 hover:border-red-600/30 transition-colors cursor-pointer"
             data-testid={`partner-logo-${partner.name.toLowerCase().replace(/\s+/g, "-")}-${i}`}
           >
             <img
@@ -631,7 +631,7 @@ function PartnersSection() {
   return (
     <section
       id="parceiros"
-      className="py-24 bg-[#0a1628] relative"
+      className="py-24 bg-[#000000] relative"
       data-testid="section-partners"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -641,7 +641,7 @@ function PartnersSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
+          <span className="text-red-500 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
             Quem confia em nós
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-partners-title">
@@ -657,7 +657,7 @@ function PartnersSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <h3 className="text-lg font-semibold text-orange-400 mb-6 text-center uppercase tracking-wider" data-testid={`text-partner-category-${index}`}>
+              <h3 className="text-lg font-semibold text-red-500 mb-6 text-center uppercase tracking-wider" data-testid={`text-partner-category-${index}`}>
                 {category.title}
               </h3>
               <PartnerLogoRow partners={category.partners} />
@@ -679,7 +679,7 @@ function CredenciadoSection() {
       className="py-20 relative overflow-hidden"
       data-testid="section-credenciado"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500" />
+      <div className="absolute inset-0 bg-gradient-to-r from-red-700 via-red-600 to-red-800" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
@@ -725,7 +725,7 @@ function AboutSection() {
   return (
     <section
       id="sobre"
-      className="py-24 bg-[#0e1a2e] relative overflow-hidden"
+      className="py-24 bg-[#0d0d0d] relative overflow-hidden"
       data-testid="section-about"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -742,9 +742,9 @@ function AboutSection() {
                 alt="Equipe TM SEG"
                 className="w-full h-[400px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0e1a2e]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/60 to-transparent" />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-orange-500 to-amber-500 rounded-md flex items-center justify-center">
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-red-600 to-red-700 rounded-md flex items-center justify-center">
               <div className="text-center">
                 <span className="text-3xl font-bold text-white block">24/7</span>
                 <span className="text-white/80 text-xs">Atendimento</span>
@@ -757,7 +757,7 @@ function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
+            <span className="text-red-500 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
               Sobre nós
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6" data-testid="text-about-title">
@@ -792,8 +792,8 @@ function AboutSection() {
 
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-orange-500/10 border border-orange-500/20 rounded-md flex items-center justify-center flex-shrink-0">
-                  <Target className="w-5 h-5 text-orange-400" />
+                <div className="w-10 h-10 bg-red-600/10 border border-red-600/20 rounded-md flex items-center justify-center flex-shrink-0">
+                  <Target className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-sm mb-1">Missão</h4>
@@ -801,8 +801,8 @@ function AboutSection() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-orange-500/10 border border-orange-500/20 rounded-md flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-5 h-5 text-orange-400" />
+                <div className="w-10 h-10 bg-red-600/10 border border-red-600/20 rounded-md flex items-center justify-center flex-shrink-0">
+                  <Eye className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-sm mb-1">Visão</h4>
@@ -810,8 +810,8 @@ function AboutSection() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-orange-500/10 border border-orange-500/20 rounded-md flex items-center justify-center flex-shrink-0">
-                  <Award className="w-5 h-5 text-orange-400" />
+                <div className="w-10 h-10 bg-red-600/10 border border-red-600/20 rounded-md flex items-center justify-center flex-shrink-0">
+                  <Award className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-sm mb-1">Valores</h4>
@@ -819,8 +819,8 @@ function AboutSection() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-orange-500/10 border border-orange-500/20 rounded-md flex items-center justify-center flex-shrink-0">
-                  <Users className="w-5 h-5 text-orange-400" />
+                <div className="w-10 h-10 bg-red-600/10 border border-red-600/20 rounded-md flex items-center justify-center flex-shrink-0">
+                  <Users className="w-5 h-5 text-red-500" />
                 </div>
                 <div>
                   <h4 className="text-white font-semibold text-sm mb-1">Equipe</h4>
@@ -832,7 +832,7 @@ function AboutSection() {
             <a href="#contato">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold"
+                className="bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold"
                 data-testid="button-about-contact"
               >
                 Saiba Mais
@@ -924,7 +924,7 @@ function ContactSection() {
   return (
     <section
       id="contato"
-      className="py-24 bg-[#0a1628] relative"
+      className="py-24 bg-[#000000] relative"
       data-testid="section-contact"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -934,7 +934,7 @@ function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <span className="text-orange-400 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
+          <span className="text-red-500 text-sm font-semibold uppercase tracking-[0.2em] mb-3 block">
             Fale conosco
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6" data-testid="text-contact-title">
@@ -952,8 +952,8 @@ function ContactSection() {
         >
           {budgetSteps.map((step, index) => (
             <div key={step.title} className="text-center" data-testid={`budget-step-${index}`}>
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <step.icon className="w-7 h-7 text-orange-400" />
+              <div className="w-16 h-16 bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <step.icon className="w-7 h-7 text-red-500" />
               </div>
               <h3 className="text-white font-bold text-base mb-2">{step.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
@@ -968,7 +968,7 @@ function ContactSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-form">
+            <div className="bg-[#1a1a1a] rounded-md border border-white/5 p-8" data-testid="card-contact-form">
               <h3 className="text-xl font-bold text-white mb-6">Orçamento</h3>
 
               {submitted ? (
@@ -987,7 +987,7 @@ function ContactSection() {
                         required
                         value={formData.nome}
                         onChange={e => setFormData(p => ({ ...p, nome: e.target.value }))}
-                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
                         placeholder="Seu nome"
                         data-testid="input-nome"
                       />
@@ -998,7 +998,7 @@ function ContactSection() {
                         type="text"
                         value={formData.empresa}
                         onChange={e => setFormData(p => ({ ...p, empresa: e.target.value }))}
-                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
                         placeholder="Nome da empresa"
                         data-testid="input-empresa"
                       />
@@ -1012,7 +1012,7 @@ function ContactSection() {
                       required
                       value={formData.email}
                       onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
-                      className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                      className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
                       placeholder="seu@email.com"
                       data-testid="input-email"
                     />
@@ -1025,7 +1025,7 @@ function ContactSection() {
                         type="text"
                         value={formData.celular}
                         onChange={e => setFormData(p => ({ ...p, celular: mascaraCelular(e.target.value) }))}
-                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
                         placeholder="(00) 00000-0000"
                         data-testid="input-celular"
                       />
@@ -1036,7 +1036,7 @@ function ContactSection() {
                         type="text"
                         value={formData.telefone}
                         onChange={e => setFormData(p => ({ ...p, telefone: mascaraTelefone(e.target.value) }))}
-                        className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors"
+                        className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
                         placeholder="(00) 0000-0000"
                         data-testid="input-telefone"
                       />
@@ -1054,7 +1054,7 @@ function ContactSection() {
                         >
                           <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
                             formData.servicos.includes(service)
-                              ? "bg-orange-500 border-orange-500"
+                              ? "bg-red-600 border-red-600"
                               : "border-white/20 bg-transparent"
                           }`}>
                             {formData.servicos.includes(service) && (
@@ -1069,7 +1069,7 @@ function ContactSection() {
                             checked={formData.servicos.includes(service)}
                             onChange={() => handleServiceToggle(service)}
                           />
-                          <span className="text-gray-300 text-sm group-hover:text-orange-400 transition-colors">
+                          <span className="text-gray-300 text-sm group-hover:text-red-500 transition-colors">
                             {service}
                           </span>
                         </label>
@@ -1083,7 +1083,7 @@ function ContactSection() {
                       rows={4}
                       value={formData.mensagem}
                       onChange={e => setFormData(p => ({ ...p, mensagem: e.target.value }))}
-                      className="w-full bg-[#0a1628] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-orange-500/50 focus:outline-none transition-colors resize-none"
+                      className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors resize-none"
                       placeholder="Descreva sua necessidade..."
                       data-testid="input-mensagem"
                     />
@@ -1092,7 +1092,7 @@ function ContactSection() {
                   <label className="flex items-start gap-2 cursor-pointer" data-testid="checkbox-aceite">
                     <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors mt-0.5 flex-shrink-0 ${
                       formData.aceite
-                        ? "bg-orange-500 border-orange-500"
+                        ? "bg-red-600 border-red-600"
                         : "border-white/20 bg-transparent"
                     }`}>
                       {formData.aceite && (
@@ -1115,7 +1115,7 @@ function ContactSection() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white border-none font-semibold text-base"
+                    className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold text-base"
                     data-testid="button-submit-form"
                   >
                     <Send className="w-5 h-5 mr-2" />
@@ -1132,37 +1132,37 @@ function ContactSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="lg:col-span-2 space-y-6"
           >
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-info">
+            <div className="bg-[#1a1a1a] rounded-md border border-white/5 p-8" data-testid="card-contact-info">
               <h3 className="text-white font-bold text-lg mb-6">Informações de Contato</h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-orange-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
                     <h4 className="text-white font-semibold text-sm">Telefone</h4>
-                    <a href="tel:+5511954563755" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-phone">
+                    <a href="tel:+5511954563755" className="text-red-500 text-sm hover:text-red-400 transition-colors" data-testid="link-phone">
                       {PHONE_NUMBER}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-orange-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
                     <h4 className="text-white font-semibold text-sm">WhatsApp</h4>
-                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-whatsapp-contact">
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-red-500 text-sm hover:text-red-400 transition-colors" data-testid="link-whatsapp-contact">
                       {PHONE_NUMBER}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-orange-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-600/20 to-red-700/20 border border-red-600/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
                     <h4 className="text-white font-semibold text-sm">Endereço</h4>
@@ -1172,7 +1172,7 @@ function ContactSection() {
               </div>
             </div>
 
-            <div className="bg-[#111d33] rounded-md border border-white/5 p-8" data-testid="card-contact-text">
+            <div className="bg-[#1a1a1a] rounded-md border border-white/5 p-8" data-testid="card-contact-text">
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Estamos felizes em saber que você deseja se conectar conosco!
               </p>
@@ -1208,7 +1208,7 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="bg-[#060e1a] border-t border-white/5 pt-16 pb-8" data-testid="footer">
+    <footer className="bg-[#000000] border-t border-white/5 pt-16 pb-8" data-testid="footer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
@@ -1231,22 +1231,22 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-pronta">
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-pronta">
                   Pronta Resposta
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-escolta">
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-escolta">
                   Escolta Armada
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-moto">
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-moto">
                   Moto Acompanhamento
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-guincho">
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-guincho">
                   Serviço de Guincho
                 </a>
               </li>
@@ -1259,22 +1259,22 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#inicio" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-home">
+                <a href="#inicio" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-home">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#sobre" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-about">
+                <a href="#sobre" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-about">
                   Quem Somos
                 </a>
               </li>
               <li>
-                <a href="#diferenciais" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-differentials">
+                <a href="#diferenciais" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-differentials">
                   Diferenciais
                 </a>
               </li>
               <li>
-                <a href="#contato" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-contact">
+                <a href="#contato" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-contact">
                   Orçamento
                 </a>
               </li>
@@ -1287,19 +1287,19 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-orange-400 flex-shrink-0" />
-                <a href="tel:+5511954563755" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-phone">
+                <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
+                <a href="tel:+5511954563755" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-phone">
                   {PHONE_NUMBER}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-orange-400 flex-shrink-0" />
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-whatsapp">
+                <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-whatsapp">
                   {PHONE_NUMBER}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                 <span className="text-gray-500 text-sm">{ADDRESS}</span>
               </li>
             </ul>
@@ -1309,7 +1309,7 @@ function Footer() {
                 href="https://instagram.com/grupotmseg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
+                className="w-10 h-10 bg-[#1a1a1a] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-600/30 transition-all"
                 data-testid="link-social-instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -1318,7 +1318,7 @@ function Footer() {
                 href="https://facebook.com/grupotmseg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
+                className="w-10 h-10 bg-[#1a1a1a] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-600/30 transition-all"
                 data-testid="link-social-facebook"
               >
                 <Facebook className="w-5 h-5" />
@@ -1327,7 +1327,7 @@ function Footer() {
                 href="https://linkedin.com/company/grupotmseg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#111d33] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
+                className="w-10 h-10 bg-[#1a1a1a] border border-white/5 rounded-md flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-600/30 transition-all"
                 data-testid="link-social-linkedin"
               >
                 <Linkedin className="w-5 h-5" />
@@ -1355,7 +1355,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#000000]">
       <Header />
       <HeroSection />
       <ServicesSection />
