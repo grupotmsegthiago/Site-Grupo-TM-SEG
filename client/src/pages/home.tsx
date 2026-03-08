@@ -31,8 +31,10 @@ import {
 } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const WHATSAPP_URL = "https://grupotmseg.com.br/whats";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5511954563755&text=Ol%C3%A1%2C+visitei+o+seu+site+e+gostaria+de+tirar+uma+d%C3%BAvida%21";
 const LOGIN_URL = "https://app.cryzo.com.br/login/grupotmseg?status=signin";
+const PHONE_NUMBER = "+55 11 95456-3755";
+const ADDRESS = "Av. Parada Pinto, 737 - Vila Nova Cachoeirinha, São Paulo - SP, 02611-003";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,13 +47,16 @@ function Header() {
   }, []);
 
   const navLinks = [
-    { label: "Início", href: "#inicio" },
-    { label: "Serviços", href: "#servicos" },
+    { label: "Home", href: "#inicio" },
+    { label: "Serviços", href: "#servicos", submenu: [
+      { label: "Pronta Resposta", href: "#servicos" },
+      { label: "Escolta Armada", href: "#servicos" },
+      { label: "Moto Acompanhamento", href: "#servicos" },
+    ]},
+    { label: "Quem Somos", href: "#sobre" },
     { label: "Diferenciais", href: "#diferenciais" },
-    { label: "Parceiros", href: "#parceiros" },
-    { label: "Sobre", href: "#sobre" },
-    { label: "Contato", href: "#contato" },
-  ];
+    { label: "Orçamento", href: "#contato" },
+  ] as { label: string; href: string; submenu?: { label: string; href: string }[] }[];
 
   return (
     <header
@@ -65,29 +70,50 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <a href="#inicio" className="flex items-center gap-3" data-testid="link-logo">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-md flex items-center justify-center">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-lg leading-tight tracking-wide">
-                GRUPO TM SEG
-              </span>
-              <span className="text-orange-400 text-[10px] uppercase tracking-[0.2em] leading-tight">
-                Serviços em Segurança
-              </span>
-            </div>
+            <img
+              src="/images/logo-tmseg.webp"
+              alt="Grupo TM SEG"
+              className="h-12 w-auto"
+            />
           </a>
 
           <nav className="hidden lg:flex items-center gap-1" data-testid="nav-desktop">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider"
-                data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
-              >
-                {link.label}
-              </a>
+              link.submenu ? (
+                <div key={link.label} className="relative group">
+                  <a
+                    href={link.href}
+                    className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider inline-flex items-center gap-1"
+                    data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
+                  >
+                    {link.label}
+                    <ChevronRight className="w-3 h-3 rotate-90 transition-transform group-hover:rotate-[270deg]" />
+                  </a>
+                  <div className="absolute top-full left-0 pt-2 hidden group-hover:block z-50">
+                    <div className="bg-[#0a1628]/95 backdrop-blur-md border border-white/10 rounded-md py-2 min-w-[200px]">
+                      {link.submenu.map((sub) => (
+                        <a
+                          key={sub.label}
+                          href={sub.href}
+                          className="block text-gray-300 hover:text-orange-400 hover:bg-white/5 transition-colors px-4 py-2 text-sm"
+                          data-testid={`link-nav-sub-${sub.label.toLowerCase().replace(/\s+/g, "-")}`}
+                        >
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-gray-300 hover:text-orange-400 transition-colors px-4 py-2 text-sm font-medium uppercase tracking-wider"
+                  data-testid={`link-nav-${link.label.toLowerCase().replace(/[çõãí]/g, c => ({ç:'c',õ:'o',ã:'a',í:'i'}[c] || c))}`}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </nav>
 
@@ -226,7 +252,7 @@ function HeroSection() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
             data-testid="text-hero-title"
           >
-            Garanta a segurança dos seus ativos{" "}
+            Garanta a segurança do seus ativos{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">
               com a nossa equipe de especialistas
             </span>
@@ -532,32 +558,35 @@ function StatsSection() {
 }
 
 const embarcadores = [
-  { name: "Claro", url: "https://www.claro.com.br/" },
-  { name: "Mary Kay", url: "https://www.marykay.com.br/" },
-  { name: "Carrefour", url: "https://www.carrefour.com.br/" },
-  { name: "Bless Foods", url: "https://www.instagram.com/blessfoodsbr/" },
-  { name: "FBM", url: "https://www.fbm.ind.br/" },
-  { name: "HP", url: "https://www.hp.com/" },
+  { name: "HP", url: "https://www.hp.com/", logo: "/images/partners/hp.png" },
+  { name: "Claro", url: "https://www.claro.com.br/", logo: "/images/partners/claro.png" },
+  { name: "Mary Kay", url: "https://www.marykay.com.br/", logo: "/images/partners/marykay.png" },
+  { name: "Carrefour", url: "https://www.carrefour.com.br/", logo: "/images/partners/carrefour.png" },
+  { name: "Bless Foods", url: "https://www.instagram.com/blessfoodsbr/", logo: "/images/partners/blessfoods.png" },
+  { name: "FBM", url: "https://www.fbm.ind.br/", logo: "/images/partners/fbm.png" },
+  { name: "Marvel", url: "#", logo: "/images/partners/marvel.png" },
 ];
 
 const transportadoras = [
-  { name: "RN Logística", url: "https://www.rnlogistica.com.br/" },
-  { name: "Poloni", url: "https://www.trpoloni.com.br/" },
-  { name: "Luft", url: "https://www.luft.com.br/" },
-  { name: "Cesari", url: "https://www.grupocesari.com.br/" },
-  { name: "CEVA", url: "https://www.cevalogistics.com/" },
-  { name: "Maroni", url: "https://www.grupomaronibrasil.com.br/" },
+  { name: "Maroni", url: "https://www.grupomaronibrasil.com.br/", logo: "/images/partners/maroni.png" },
+  { name: "RN Logística", url: "https://www.rnlogistica.com.br/", logo: "/images/partners/rn.png" },
+  { name: "Poloni", url: "https://www.trpoloni.com.br/", logo: "/images/partners/poloni.png" },
+  { name: "Luft", url: "https://www.luft.com.br/", logo: "/images/partners/luft.png" },
+  { name: "Cesari", url: "https://www.grupocesari.com.br/", logo: "/images/partners/cesari.png" },
+  { name: "CEVA", url: "https://www.cevalogistics.com/", logo: "/images/partners/ceva.png" },
+  { name: "Skymark", url: "#", logo: "/images/partners/skymark.png" },
+  { name: "IBL", url: "#", logo: "/images/partners/ibl.png" },
 ];
 
 const parceirosGR = [
-  { name: "JC Gestão de Riscos", url: "https://www.jcgestaoderiscos.com.br/" },
-  { name: "Opentech", url: "https://opentechgr.com.br/" },
-  { name: "Mundial Risk", url: "https://www.mundialrisk.com.br/" },
-  { name: "Buonny", url: "https://www.buonny.com.br/" },
-  { name: "BRK", url: "https://www.brktecnologia.com.br/" },
+  { name: "JC Gestão de Riscos", url: "https://www.jcgestaoderiscos.com.br/", logo: "/images/partners/jc.png" },
+  { name: "Opentech", url: "https://opentechgr.com.br/", logo: "/images/partners/opentech.png" },
+  { name: "Mundial Risk", url: "https://www.mundialrisk.com.br/", logo: "/images/partners/mundialrisk.png" },
+  { name: "Buonny", url: "https://www.buonny.com.br/", logo: "/images/partners/buonny.png" },
+  { name: "BRK", url: "https://www.brktecnologia.com.br/", logo: "/images/partners/brk.png" },
 ];
 
-function PartnerLogoRow({ partners }: { partners: { name: string; url: string }[] }) {
+function PartnerLogoRow({ partners }: { partners: { name: string; url: string; logo: string }[] }) {
   const doubled = [...partners, ...partners];
   return (
     <div className="overflow-hidden relative">
@@ -571,14 +600,17 @@ function PartnerLogoRow({ partners }: { partners: { name: string; url: string }[
           <a
             key={`${partner.name}-${i}`}
             href={partner.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-shrink-0 w-36 h-24 bg-[#111d33] rounded-md border border-white/5 flex items-center justify-center px-4 hover:border-orange-500/30 transition-colors cursor-pointer"
+            target={partner.url !== "#" ? "_blank" : undefined}
+            rel={partner.url !== "#" ? "noopener noreferrer" : undefined}
+            className="flex-shrink-0 w-40 h-28 bg-[#111d33] rounded-md border border-white/5 flex items-center justify-center p-4 hover:border-orange-500/30 transition-colors cursor-pointer"
             data-testid={`partner-logo-${partner.name.toLowerCase().replace(/\s+/g, "-")}-${i}`}
           >
-            <span className="text-gray-400 text-sm font-semibold text-center leading-tight hover:text-orange-400 transition-colors">
-              {partner.name}
-            </span>
+            <img
+              src={partner.logo}
+              alt={partner.name}
+              className="max-w-full max-h-full object-contain"
+              loading="lazy"
+            />
           </a>
         ))}
       </div>
@@ -593,7 +625,7 @@ function PartnersSection() {
   const categories = [
     { title: "Embarcadores", partners: embarcadores },
     { title: "Transportadoras", partners: transportadoras },
-    { title: "Parceiros de GR", partners: parceirosGR },
+    { title: "Parceiros GR", partners: parceirosGR },
   ];
 
   return (
@@ -706,7 +738,7 @@ function AboutSection() {
           >
             <div className="relative rounded-md overflow-hidden">
               <img
-                src="/images/about-team.png"
+                src="/images/about-team-original.webp"
                 alt="Equipe TM SEG"
                 className="w-full h-[400px] object-cover"
               />
@@ -1106,23 +1138,35 @@ function ContactSection() {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-orange-400" />
+                    <Phone className="w-5 h-5 text-orange-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-sm">E-mail</h4>
-                    <a href="mailto:contato@grupotmseg.com.br" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-email">
-                      contato@grupotmseg.com.br
+                    <h4 className="text-white font-semibold text-sm">Telefone</h4>
+                    <a href="tel:+5511954563755" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-phone">
+                      {PHONE_NUMBER}
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-5 h-5 text-orange-400" />
+                    <Phone className="w-5 h-5 text-orange-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-sm">Horário</h4>
-                    <p className="text-orange-400 text-sm font-semibold" data-testid="text-hours">24/7 - Todos os dias</p>
+                    <h4 className="text-white font-semibold text-sm">WhatsApp</h4>
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-orange-400 text-sm hover:text-orange-300 transition-colors" data-testid="link-whatsapp-contact">
+                      {PHONE_NUMBER}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500/20 to-amber-500/20 border border-orange-500/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-sm">Endereço</h4>
+                    <p className="text-gray-400 text-sm" data-testid="text-address">{ADDRESS}</p>
                   </div>
                 </div>
               </div>
@@ -1168,18 +1212,12 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-md flex items-center justify-center">
-                <Shield className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-lg leading-tight">
-                  GRUPO TM SEG
-                </span>
-                <span className="text-orange-400 text-[10px] uppercase tracking-[0.2em]">
-                  Serviços em Segurança
-                </span>
-              </div>
+            <div className="mb-6">
+              <img
+                src="/images/logo-footer.webp"
+                alt="Grupo TM SEG"
+                className="h-16 w-auto"
+              />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
               Soluções completas em segurança para transporte de cargas e
@@ -1217,12 +1255,17 @@ function Footer() {
 
           <div>
             <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">
-              Links
+              Menu
             </h4>
             <ul className="space-y-3">
               <li>
+                <a href="#inicio" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-home">
+                  Home
+                </a>
+              </li>
+              <li>
                 <a href="#sobre" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-about">
-                  Sobre Nós
+                  Quem Somos
                 </a>
               </li>
               <li>
@@ -1231,18 +1274,8 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#parceiros" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-partners">
-                  Parceiros
-                </a>
-              </li>
-              <li>
                 <a href="#contato" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-contact">
-                  Contato
-                </a>
-              </li>
-              <li>
-                <a href={LOGIN_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-login">
-                  Área do Cliente
+                  Orçamento
                 </a>
               </li>
             </ul>
@@ -1254,14 +1287,20 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-orange-400 flex-shrink-0" />
-                <a href="mailto:contato@grupotmseg.com.br" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-email">
-                  contato@grupotmseg.com.br
+                <Phone className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                <a href="tel:+5511954563755" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-phone">
+                  {PHONE_NUMBER}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Clock className="w-4 h-4 text-orange-400 flex-shrink-0" />
-                <span className="text-gray-500 text-sm">24/7 Atendimento</span>
+                <Phone className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-orange-400 transition-colors text-sm" data-testid="link-footer-whatsapp">
+                  {PHONE_NUMBER}
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-500 text-sm">{ADDRESS}</span>
               </li>
             </ul>
 
@@ -1300,14 +1339,11 @@ function Footer() {
         <div className="border-t border-white/5 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-600 text-sm" data-testid="text-copyright">
-              2024 Grupo TM SEG. Todos os direitos reservados.
+              Grupo TMSEG® Todos os direitos reservados
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-600 hover:text-gray-400 text-sm transition-colors" data-testid="link-privacy">
-                Política de Privacidade
-              </a>
-              <a href="#" className="text-gray-600 hover:text-gray-400 text-sm transition-colors" data-testid="link-terms">
-                Termos de Uso
+              <a href="https://grupotmseg.com.br/terms/politica-de-privacidade/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-400 text-sm transition-colors" data-testid="link-privacy">
+                Política de privacidade
               </a>
             </div>
           </div>
