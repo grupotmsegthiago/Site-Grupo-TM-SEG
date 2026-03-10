@@ -32,7 +32,7 @@ import {
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5511954563755&text=Ol%C3%A1%2C+visitei+o+seu+site+e+gostaria+de+tirar+uma+d%C3%BAvida%21";
-const LOGIN_URL = "https://app.cryzo.com.br/login/grupotmseg?status=signin";
+const LOGIN_URL = "https://sistema.grupotmseg.com.br";
 const PHONE_NUMBER = "+55 11 95456-3755";
 const ADDRESS = "Av. Parada Pinto, 737 - Vila Nova Cachoeirinha, São Paulo - SP, 02611-003";
 
@@ -49,9 +49,9 @@ function Header() {
   const navLinks = [
     { label: "Home", href: "#inicio" },
     { label: "Serviços", href: "#servicos", submenu: [
-      { label: "Pronta Resposta", href: "#servicos" },
-      { label: "Escolta Armada", href: "#servicos" },
-      { label: "Moto Acompanhamento", href: "#servicos" },
+      { label: "Fiscal de Rota", href: "#servicos" },
+      { label: "Intermediação de Escolta Armada", href: "#servicos" },
+      { label: "Acompanhamento Logístico", href: "#servicos" },
     ]},
     { label: "Quem Somos", href: "#sobre" },
     { label: "Diferenciais", href: "#diferenciais" },
@@ -265,8 +265,8 @@ function HeroSection() {
             className="text-gray-300 text-lg sm:text-xl mb-10 leading-relaxed max-w-2xl"
             data-testid="text-hero-description"
           >
-            Soluções completas em escolta armada, pronta resposta e
-            acompanhamento logístico em todo o território nacional.
+            Soluções completas em intermediação de escolta armada, consultoria de GR,
+            regulação e acompanhamento logístico em todo o território nacional.
           </motion.p>
 
           <motion.div
@@ -306,32 +306,32 @@ function HeroSection() {
 
 const services = [
   {
-    title: "Pronta Resposta",
+    title: "Fiscal de Rota",
     description:
-      "Oferecemos pronta resposta de carga 24/7, garantindo atendimento rápido para emergências de transporte e segurança de cargas.",
-    icon: Zap,
-    image: "/images/service-pronta-resposta.png",
+      "Nosso serviço de fiscal de rota oferece monitoramento e inspeção contínua das rotas de transporte, garantindo conformidade, segurança e controle total da operação logística.",
+    icon: Eye,
+    image: "/images/service-fiscal-rota.png",
   },
   {
-    title: "Escolta Armada",
+    title: "Intermediação de Escolta Armada",
     description:
-      "Nosso serviço de escolta armada oferece segurança total para o transporte de bens valiosos e pessoas, combinando planejamento estratégico, tecnologia avançada e expertise profissional.",
+      "Realizamos a intermediação de escolta armada com empresas devidamente homologadas e com alvará ativo na Polícia Federal, garantindo segurança total para o transporte de cargas valiosas.",
     icon: Shield,
     image: "/images/service-escolta.png",
   },
   {
-    title: "Moto Acompanhamento",
+    title: "Acompanhamento Logístico",
     description:
-      "Nosso serviço de acompanhamento motorizado oferece uma vigilância proativa e flexível, garantindo uma presença de segurança constante e uma resposta rápida a quaisquer incidentes.",
-    icon: Bike,
-    image: "/images/service-moto.png",
+      "Nosso serviço de acompanhamento logístico oferece monitoramento em tempo real, rastreamento e gestão de toda a operação de transporte com tecnologia de ponta e equipe especializada.",
+    icon: MapPin,
+    image: "/images/service-acompanhamento.png",
   },
   {
     title: "Serviço de Guincho",
     description:
       "Oferecemos serviço de guincho especializado para situações emergenciais, garantindo a remoção e transporte seguro de veículos e cargas com agilidade e eficiência.",
     icon: Truck,
-    image: "/images/service-pronta-resposta.png",
+    image: "/images/service-guincho.png",
   },
 ];
 
@@ -436,9 +436,9 @@ const differentials = [
   },
   {
     icon: Zap,
-    title: "Pronta Resposta Personalizada",
+    title: "Fiscal de Rota Personalizado",
     description:
-      "Estamos sempre prontos para agir com rapidez e eficiência. Nossa equipe especializada oferece uma resposta ágil em situações de emergência, realizando averiguações, preservação de áreas, atendimento a antenistas e segurança patrimonial.",
+      "Realizamos inspeção e fiscalização de rotas com rapidez e eficiência. Nossa equipe especializada monitora cada etapa do transporte, garantindo conformidade e segurança em toda a operação logística.",
     image: "/images/icon-response.png",
   },
   {
@@ -450,9 +450,9 @@ const differentials = [
   },
   {
     icon: Shield,
-    title: "Escolta Armada Especializada",
+    title: "Intermediação de Escolta Especializada",
     description:
-      "Conte com nossa equipe altamente capacitada para atividades especializadas em escolta armada. Priorizamos a segurança e a eficiência em todas as nossas operações.",
+      "Realizamos a intermediação com empresas de escolta armada devidamente homologadas e com alvará ativo na Polícia Federal. Priorizamos a segurança e a eficiência em todas as operações.",
     image: "/images/icon-shield.png",
   },
 ];
@@ -766,7 +766,7 @@ function AboutSection() {
             <p className="text-gray-400 text-base leading-relaxed mb-4">
               O GRUPO TM SEG se posiciona como um parceiro estratégico, dedicado a
               oferecer soluções de excelência na intermediação de serviços
-              especializados em Escolta Armada, Pronta Resposta, Acompanhamento
+              especializados em Intermediação de Escolta Armada, Fiscal de Rota, Acompanhamento
               Logístico em todo o território nacional.
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-4">
@@ -777,10 +777,10 @@ function AboutSection() {
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-4">
               Através de uma vasta rede de parceiros de confiança, oferecemos
-              serviços que abrangem desde a escolta armada até a pronta resposta,
-              garantindo a proteção e o acompanhamento logístico de cargas em todo
-              o Brasil. Nosso compromisso é assegurar que nossos clientes tenham
-              acesso aos melhores recursos disponíveis no mercado.
+              serviços que abrangem desde a intermediação de escolta armada até
+              o fiscal de rota, garantindo a proteção e o acompanhamento logístico
+              de cargas em todo o Brasil. Nosso compromisso é assegurar que nossos
+              clientes tenham acesso aos melhores recursos disponíveis no mercado.
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-8">
               Com uma equipe dedicada e experiente, trabalhamos incansavelmente
@@ -885,9 +885,9 @@ function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
 
   const serviceOptions = [
-    "Pronta Resposta",
-    "Escolta Armada",
-    "Moto Acompanhamento",
+    "Fiscal de Rota",
+    "Intermediação de Escolta Armada",
+    "Acompanhamento Logístico",
     "Serviço de Guincho",
   ];
 
@@ -1231,18 +1231,18 @@ function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-pronta">
-                  Pronta Resposta
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-fiscal">
+                  Fiscal de Rota
                 </a>
               </li>
               <li>
                 <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-escolta">
-                  Escolta Armada
+                  Intermediação de Escolta Armada
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-moto">
-                  Moto Acompanhamento
+                <a href="#servicos" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-acompanhamento">
+                  Acompanhamento Logístico
                 </a>
               </li>
               <li>
@@ -1353,9 +1353,54 @@ function Footer() {
   );
 }
 
+function DisclaimerModal() {
+  const [open, setOpen] = useState(true);
+
+  if (!open) return null;
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+        data-testid="modal-disclaimer"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className="bg-[#1a1a1a] border border-white/10 rounded-lg max-w-lg w-full p-8 shadow-2xl"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center flex-shrink-0">
+              <Shield className="w-6 h-6 text-white" />
+            </div>
+            <h2 className="text-white text-xl font-bold">Grupo TM SEG</h2>
+          </div>
+          <p className="text-gray-300 text-sm leading-relaxed mb-6" data-testid="text-disclaimer">
+            O Grupo TM SEG é uma empresa de <strong className="text-white">Intermediação de Escolta Armada, Consultoria de GR e Regulação</strong>. 
+            Não possuímos nenhuma viatura e 100% do nosso serviço são feitos por empresas devidamente homologadas e com alvará ativo na Polícia Federal.
+          </p>
+          <Button
+            onClick={() => setOpen(false)}
+            className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold"
+            data-testid="button-disclaimer-close"
+          >
+            Entendi
+          </Button>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#000000]">
+      <DisclaimerModal />
       <Header />
       <HeroSection />
       <ServicesSection />
