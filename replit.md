@@ -6,7 +6,7 @@ A faithful reproduction of the Grupo TM SEG security services website (www.grupo
 ## Architecture
 - **Frontend**: React + TypeScript + Tailwind CSS + Framer Motion
 - **Backend**: Express.js (minimal, serves static frontend)
-- **Routing**: wouter (single page with hash navigation)
+- **Routing**: wouter (multi-page SPA with hash navigation on home)
 - **Styling**: Black background with red accents matching the original Elementor-based brand
 
 ## Key Sections
@@ -17,7 +17,7 @@ A faithful reproduction of the Grupo TM SEG security services website (www.grupo
 5. **Differentials** - Four differential cards highlighting company strengths
 6. **Stats** - Key statistics counter section
 7. **Partners** - Auto-scrolling partner logos in three categories (Embarcadores, Transportadoras, Parceiros GR) with real logo images from live site
-8. **Credenciado** - CTA section for partner credentialing ("Seja credenciado pela TMSEG")
+8. **Credenciado** - CTA section for partner credentialing ("Seja credenciado pela TMSEG") → links to /cadastro-operacional
 9. **About** - Full "Quem Somos" text (4 paragraphs from WordPress XML) with mission/vision/values, original team image
 10. **Contact** - Budget flow steps (Orçamento → Recebimento → Proposta → Contrato), full contact form with fields (Nome, Empresa, E-mail, Celular, Telefone, Serviços checkboxes, Mensagem, Aceite), contact info sidebar with phone/WhatsApp/address
 11. **Footer** - Logo image, menu links, contact info (phone, WhatsApp, address), social media (Instagram, Facebook, LinkedIn), privacy policy link, copyright
@@ -35,8 +35,13 @@ A faithful reproduction of the Grupo TM SEG security services website (www.grupo
 - Transportadoras (8): Maroni, RN, Poloni, Luft, Cesari, CEVA, Skymark, IBL
 - Parceiros GR (5): JC, Opentech, Mundial Risk, Buonny, BRK
 
+## Pages
+- `/` — Home (single-page with all sections)
+- `/cadastro-operacional` — Partner/provider registration form (sends data via WhatsApp)
+
 ## File Structure
 - `client/src/pages/home.tsx` - Main single-page component with all sections
+- `client/src/pages/cadastro-operacional.tsx` - Operational registration form for service providers
 - `client/src/App.tsx` - App router
 - `client/src/index.css` - Theme variables (black/red palette, Poppins font)
 - `client/public/images/` - Logo, about team, hero, service icons

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import {
   Shield,
@@ -702,16 +703,16 @@ function CredenciadoSection() {
           <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
             Junte-se à nossa rede de parceiros credenciados e expanda suas oportunidades de negócio.
           </p>
-          <a href="#contato">
+          <Link href="/cadastro-operacional">
             <Button
               size="lg"
-              className="bg-white text-orange-600 border-none font-bold text-base px-10"
+              className="bg-white text-red-600 border-none font-bold text-base px-10"
               data-testid="button-credenciado-contact"
             >
               Quero me Credenciar
               <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
