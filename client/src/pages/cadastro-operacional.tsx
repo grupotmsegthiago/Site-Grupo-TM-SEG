@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-const WHATSAPP_PHONE = "5511954563755";
+const WHATSAPP_PHONE = "5511916893018";
 
 const estadosBrasil = [
   "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
