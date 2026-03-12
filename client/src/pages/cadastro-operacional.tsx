@@ -18,12 +18,6 @@ import { motion } from "framer-motion";
 
 const WHATSAPP_PHONE = "5511916893018";
 
-const estadosBrasil = [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
-  "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
-  "RS", "RO", "RR", "SC", "SP", "SE", "TO",
-];
-
 const servicosDisponiveis = [
   "Fiscal de Rota",
   "Escolta Armada",
@@ -43,7 +37,8 @@ export default function CadastroOperacional() {
     email: "",
     celular: "",
     telefone: "",
-    estados: [] as string[],
+    cidadeBase: "",
+    cidadesPreposto: [] as string[],
     servicos: [] as string[],
     experiencia: "",
     viaturas: "",
@@ -51,6 +46,25 @@ export default function CadastroOperacional() {
     aceite: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [novaCidadePreposto, setNovaCidadePreposto] = useState("");
+
+  const handleAddCidadePreposto = () => {
+    const cidade = novaCidadePreposto.trim();
+    if (cidade && !formData.cidadesPreposto.includes(cidade)) {
+      setFormData(prev => ({
+        ...prev,
+        cidadesPreposto: [...prev.cidadesPreposto, cidade],
+      }));
+      setNovaCidadePreposto("");
+    }
+  };
+
+  const handleRemoveCidadePreposto = (cidade: string) => {
+    setFormData(prev => ({
+      ...prev,
+      cidadesPreposto: prev.cidadesPreposto.filter(c => c !== cidade),
+    }));
+  };
 
   const mascaraCelular = (valor: string) => {
     valor = valor.replace(/\D/g, "");
@@ -83,15 +97,6 @@ export default function CadastroOperacional() {
     return valor.substring(0, 18);
   };
 
-  const handleEstadoToggle = (estado: string) => {
-    setFormData(prev => ({
-      ...prev,
-      estados: prev.estados.includes(estado)
-        ? prev.estados.filter(e => e !== estado)
-        : [...prev.estados, estado],
-    }));
-  };
-
   const handleServicoToggle = (servico: string) => {
     setFormData(prev => ({
       ...prev,
@@ -105,9 +110,9 @@ export default function CadastroOperacional() {
     e.preventDefault();
     if (!formData.aceite) return;
 
-    const estadosList = formData.estados.length > 0
-      ? formData.estados.join(", ")
-      : "Não especificado";
+    const cidadesPrepostoList = formData.cidadesPreposto.length > 0
+      ? formData.cidadesPreposto.join(", ")
+      : "Não informado";
 
     const servicosList = formData.servicos.length > 0
       ? formData.servicos.join(", ")
@@ -123,14 +128,15 @@ export default function CadastroOperacional() {
       `*E-mail:* ${formData.email}`,
       formData.celular ? `*Celular:* ${formData.celular}` : null,
       formData.telefone ? `*Telefone:* ${formData.telefone}` : null,
-      `*Áreas de Atuação:* ${estadosList}`,
+      formData.cidadeBase ? `*Cidade Base:* ${formData.cidadeBase}` : null,
+      `*Cidades Preposto:* ${cidadesPrepostoList}`,
       `*Serviços:* ${servicosList}`,
       formData.experiencia ? `*Experiência:* ${formData.experiencia}` : null,
       formData.viaturas ? `*Qtd. Viaturas:* ${formData.viaturas}` : null,
       formData.observacoes ? `*Observações:* ${formData.observacoes}` : null,
     ].filter(Boolean).join("\n");
 
-    if (!formData.aceite || formData.estados.length === 0 || formData.servicos.length === 0) return;
+    if (!formData.aceite || formData.servicos.length === 0) return;
 
     const whatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(mensagem)}`;
     const win = window.open(whatsappUrl, "_blank");
@@ -150,13 +156,15 @@ export default function CadastroOperacional() {
         email: "",
         celular: "",
         telefone: "",
-        estados: [],
+        cidadeBase: "",
+        cidadesPreposto: [],
         servicos: [],
         experiencia: "",
         viaturas: "",
         observacoes: "",
         aceite: false,
       });
+      setNovaCidadePreposto("");
     }, 5000);
   };
 
@@ -336,31 +344,65 @@ export default function CadastroOperacional() {
                   <div>
                     <h3 className="text-white font-bold text-lg mb-4 flex items-center gap-2">
                       <MapPin className="w-5 h-5 text-red-500" />
-                      Áreas de Atuação *
+                      Localização
                     </h3>
-                    <p className="text-gray-500 text-sm mb-3">Selecione os estados onde você atua:</p>
-                    <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 gap-2">
-                      {estadosBrasil.map(estado => (
-                        <button
-                          key={estado}
-                          type="button"
-                          onClick={() => handleEstadoToggle(estado)}
-                          className={`px-3 py-2 rounded-md text-sm font-medium transition-all ${
-                            formData.estados.includes(estado)
-                              ? "bg-red-600 text-white border border-red-600"
-                              : "bg-[#000000] text-gray-400 border border-white/10 hover:border-red-600/30 hover:text-white"
-                          }`}
-                          data-testid={`button-estado-${estado.toLowerCase()}`}
-                        >
-                          {estado}
-                        </button>
-                      ))}
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-1">Cidade Base *</label>
+                        <input
+                          type="text"
+                          required
+                          value={formData.cidadeBase}
+                          onChange={e => setFormData(p => ({ ...p, cidadeBase: e.target.value }))}
+                          className="w-full bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
+                          placeholder="Ex: São Paulo - SP"
+                          data-testid="input-cidade-base"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-300 text-sm font-medium mb-1">Cidades Preposto</label>
+                        <p className="text-gray-500 text-xs mb-2">Adicione as cidades onde você atende</p>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={novaCidadePreposto}
+                            onChange={e => setNovaCidadePreposto(e.target.value)}
+                            onKeyDown={e => { if (e.key === "Enter") { e.preventDefault(); handleAddCidadePreposto(); } }}
+                            className="flex-1 bg-[#000000] border border-white/10 rounded-md px-4 py-3 text-white text-sm placeholder-gray-500 focus:border-red-600/50 focus:outline-none transition-colors"
+                            placeholder="Ex: Campinas - SP"
+                            data-testid="input-cidade-preposto"
+                          />
+                          <Button
+                            type="button"
+                            onClick={handleAddCidadePreposto}
+                            className="bg-red-600 hover:bg-red-700 text-white border-none px-4"
+                            data-testid="button-add-cidade"
+                          >
+                            Adicionar
+                          </Button>
+                        </div>
+                        {formData.cidadesPreposto.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {formData.cidadesPreposto.map(cidade => (
+                              <span
+                                key={cidade}
+                                className="inline-flex items-center gap-1.5 bg-red-600/20 border border-red-600/30 text-red-400 text-sm px-3 py-1.5 rounded-full"
+                              >
+                                {cidade}
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemoveCidadePreposto(cidade)}
+                                  className="text-red-400 hover:text-white transition-colors ml-1"
+                                  data-testid={`button-remove-cidade-${cidade.toLowerCase().replace(/\s+/g, "-")}`}
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    {formData.estados.length > 0 && (
-                      <p className="text-red-500 text-sm mt-2">
-                        Selecionados: {formData.estados.join(", ")}
-                      </p>
-                    )}
                   </div>
 
                   <div>
@@ -465,7 +507,7 @@ export default function CadastroOperacional() {
 
                     <Button
                       type="submit"
-                      disabled={!formData.aceite || formData.estados.length === 0 || formData.servicos.length === 0}
+                      disabled={!formData.aceite || formData.servicos.length === 0}
                       className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white border-none font-semibold text-base py-6 disabled:opacity-50 disabled:cursor-not-allowed"
                       data-testid="button-submit-cadastro"
                     >
@@ -473,10 +515,9 @@ export default function CadastroOperacional() {
                       Enviar Cadastro via WhatsApp
                     </Button>
 
-                    {(!formData.aceite || formData.estados.length === 0 || formData.servicos.length === 0) && (
+                    {(!formData.aceite || formData.servicos.length === 0) && (
                       <p className="text-gray-500 text-xs text-center mt-3">
                         {!formData.aceite && "Aceite os termos para continuar. "}
-                        {formData.estados.length === 0 && "Selecione pelo menos um estado. "}
                         {formData.servicos.length === 0 && "Selecione pelo menos um serviço."}
                       </p>
                     )}
