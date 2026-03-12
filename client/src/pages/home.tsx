@@ -917,8 +917,40 @@ function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.aceite) return;
+
+    const servicosList = formData.servicos.length > 0
+      ? formData.servicos.join(", ")
+      : "Não especificado";
+
+    const mensagem = [
+      `*Novo Orçamento - Site Grupo TM SEG*`,
+      ``,
+      `*Nome:* ${formData.nome}`,
+      formData.empresa ? `*Empresa:* ${formData.empresa}` : null,
+      `*E-mail:* ${formData.email}`,
+      formData.celular ? `*Celular:* ${formData.celular}` : null,
+      formData.telefone ? `*Telefone:* ${formData.telefone}` : null,
+      `*Serviços:* ${servicosList}`,
+      formData.mensagem ? `*Mensagem:* ${formData.mensagem}` : null,
+    ].filter(Boolean).join("\n");
+
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5511954563755&text=${encodeURIComponent(mensagem)}`;
+    window.open(whatsappUrl, "_blank");
+
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({
+        nome: "",
+        empresa: "",
+        email: "",
+        celular: "",
+        telefone: "",
+        mensagem: "",
+        servicos: [],
+        aceite: false,
+      });
+    }, 5000);
   };
 
   return (
