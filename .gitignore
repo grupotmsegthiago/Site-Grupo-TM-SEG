@@ -1,6 +1,32 @@
-node_modules
-dist
+# Pastas de dependências
+node_modules/
+dist/
+.local/
+
+# Logs e Debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variáveis de ambiente (Segurança máxima - Nunca suba suas chaves!)
+.env
+.env.*
+!.env.example
+
+# Arquivos de sistema e cache
 .DS_Store
-server/public
+.cache
+.eslintcache
+.vscode/
+.idea/
+
+# Configurações e temporários
 vite.config.ts.*
 *.tar.gz
+server/public
+
+# Cópias locais / IDE (não versionar)
+cursor/
+site (1)/
+attached_assets/Pasted-*.txt

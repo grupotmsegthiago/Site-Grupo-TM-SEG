@@ -266,7 +266,7 @@ function HeroSection() {
             className="text-gray-300 text-lg sm:text-xl mb-10 leading-relaxed max-w-2xl"
             data-testid="text-hero-description"
           >
-            Soluções completas em intermediação de escolta armada, consultoria de GR,
+            Soluções completas em <strong className="font-semibold text-white">INTERMEDIAÇÕES</strong> de escolta armada, consultoria de GR,
             regulação e acompanhamento logístico em todo o território nacional.
           </motion.p>
 
