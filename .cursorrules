@@ -35,3 +35,6 @@ A partir de agora, responda apenas em Português do Brasil, inclusive explicaç�
 - Após executar as alterações, forneça um breve relatório do que foi concluído.
 - Se a alteração envolver múltiplos arquivos, descreva o impacto em cada um deles antes de confirmar.
 
+## Automação de Publicação
+- Se o usuário pedir para "atualizar o site", "publicar" ou "subir para produção", execute o script `.\publicar.ps1`.
+- Após a execução, verifique se o processo foi concluído com sucesso e informe o usuário.
