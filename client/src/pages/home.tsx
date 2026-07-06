@@ -32,9 +32,9 @@ import {
 } from "lucide-react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 
-const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5511954563755&text=Ol%C3%A1%2C+visitei+o+seu+site+e+gostaria+de+tirar+uma+d%C3%BAvida%21";
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5511916893018&text=Ol%C3%A1%2C+visitei+o+seu+site+e+gostaria+de+tirar+uma+d%C3%BAvida%21";
 const LOGIN_URL = "https://sistema.grupotmseg.com.br";
-const PHONE_NUMBER = "+55 11 95456-3755";
+const PHONE_NUMBER = "+55 11 91689-3018";
 const ADDRESS = "Av. Parada Pinto, 737 - Vila Nova Cachoeirinha, São Paulo - SP, 02611-003";
 
 function Header() {
@@ -935,7 +935,7 @@ function ContactSection() {
       formData.mensagem ? `*Mensagem:* ${formData.mensagem}` : null,
     ].filter(Boolean).join("\n");
 
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5511954563755&text=${encodeURIComponent(mensagem)}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5511916893018&text=${encodeURIComponent(mensagem)}`;
     window.open(whatsappUrl, "_blank");
 
     setSubmitted(true);
@@ -1175,7 +1175,7 @@ function ContactSection() {
                   </div>
                   <div>
                     <h4 className="text-white font-semibold text-sm">Telefone</h4>
-                    <a href="tel:+5511954563755" className="text-red-500 text-sm hover:text-red-400 transition-colors" data-testid="link-phone">
+                    <a href="tel:+5511916893018" className="text-red-500 text-sm hover:text-red-400 transition-colors" data-testid="link-phone">
                       {PHONE_NUMBER}
                     </a>
                   </div>
@@ -1321,7 +1321,7 @@ function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-red-500 flex-shrink-0" />
-                <a href="tel:+5511954563755" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-phone">
+                <a href="tel:+5511916893018" className="text-gray-500 hover:text-red-500 transition-colors text-sm" data-testid="link-footer-phone">
                   {PHONE_NUMBER}
                 </a>
               </li>
