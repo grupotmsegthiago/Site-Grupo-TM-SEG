@@ -724,33 +724,31 @@ function StatsSection() {
   );
 }
 
-const embarcadores = [
-  { name: "HP", url: "https://www.hp.com/", logo: "/images/partners/hp.png" },
+const clientes = [
   { name: "Claro", url: "https://www.claro.com.br/", logo: "/images/partners/claro.png" },
-  { name: "Mary Kay", url: "https://www.marykay.com.br/", logo: "/images/partners/marykay.png" },
-  { name: "Carrefour", url: "https://www.carrefour.com.br/", logo: "/images/partners/carrefour.png" },
-  { name: "Bless Foods", url: "https://www.instagram.com/blessfoodsbr/", logo: "/images/partners/blessfoods.png" },
-  { name: "FBM", url: "https://www.fbm.ind.br/", logo: "/images/partners/fbm.png" },
-  { name: "Marvel", url: "#", logo: "/images/partners/marvel.png" },
-];
-
-const transportadoras = [
-  { name: "Maroni", url: "https://www.grupomaronibrasil.com.br/", logo: "/images/partners/maroni.png" },
-  { name: "RN Logística", url: "https://www.rnlogistica.com.br/", logo: "/images/partners/rn.png" },
-  { name: "Poloni", url: "https://www.trpoloni.com.br/", logo: "/images/partners/poloni.png" },
+  { name: "HP", url: "https://www.hp.com/", logo: "/images/partners/hp.png" },
+  { name: "Amazon Transportes", url: "https://amazontransportes.com.br/", logo: "/images/partners/amazon-transportes.png" },
+  { name: "DHL", url: "https://www.dhl.com/br-pt/home.html", logo: "/images/partners/dhl.png" },
+  { name: "CEVA Logística", url: "https://www.cevalogistics.com/", logo: "/images/partners/ceva.png" },
+  { name: "Kodex", url: "https://kodexexpress.com/", logo: "/images/partners/kodex.png" },
+  { name: "Trans Pacheco", url: "https://transportepacheco.com.br/", logo: "/images/partners/transpacheco.png" },
+  { name: "Techtrans", url: "https://www.techtrans.com.br/", logo: "/images/partners/techtrans.png" },
   { name: "Luft", url: "https://www.luft.com.br/", logo: "/images/partners/luft.png" },
-  { name: "Cesari", url: "https://www.grupocesari.com.br/", logo: "/images/partners/cesari.png" },
-  { name: "CEVA", url: "https://www.cevalogistics.com/", logo: "/images/partners/ceva.png" },
-  { name: "Skymark", url: "#", logo: "/images/partners/skymark.png" },
-  { name: "IBL", url: "#", logo: "/images/partners/ibl.png" },
+  { name: "IBL", url: "https://ibllogistica.com.br/", logo: "/images/partners/ibl.png" },
+  { name: "Ceslog", url: "https://www.grupocesari.com.br/ceslog", logo: "/images/partners/ceslog.png" },
+  { name: "Comolatti", url: "https://www.comolatti.com.br/", logo: "/images/partners/comolatti.png" },
+  { name: "Mercado Livre", url: "https://www.mercadolivre.com.br/", logo: "/images/partners/mercadolivre.png" },
 ];
 
-const parceirosGR = [
-  { name: "JC Gestão de Riscos", url: "https://www.jcgestaoderiscos.com.br/", logo: "/images/partners/jc.png" },
+const parceiros = [
+  { name: "Skymark", url: "https://skymark.com.br/", logo: "/images/partners/skymark.png" },
+  { name: "Brasil Risk", url: "https://brktecnologia.com.br/", logo: "/images/partners/brasilrisk.png" },
+  { name: "NGO", url: "https://ngogr.com.br/", logo: "/images/partners/ngo.png" },
+  { name: "NoRisk", url: "https://www.nrisklog.com.br/", logo: "/images/partners/nrisk.png" },
   { name: "Opentech", url: "https://opentechgr.com.br/", logo: "/images/partners/opentech.png" },
-  { name: "Mundial Risk", url: "https://www.mundialrisk.com.br/", logo: "/images/partners/mundialrisk.png" },
+  { name: "J&C", url: "https://www.jcgestaoderiscos.com.br/", logo: "/images/partners/jc.png" },
   { name: "Buonny", url: "https://www.buonny.com.br/", logo: "/images/partners/buonny.png" },
-  { name: "BRK", url: "https://www.brktecnologia.com.br/", logo: "/images/partners/brk.png" },
+  { name: "Mundial Risk", url: "https://www.mundialrisk.com.br/", logo: "/images/partners/mundialrisk.png" },
 ];
 
 function PartnersSection() {
@@ -760,22 +758,16 @@ function PartnersSection() {
 
   const categories = [
     {
-      title: "Embarcadores",
-      kicker: "Clientes",
-      note: "As marcas que colocam a carga na estrada.",
-      partners: embarcadores,
+      title: "Clientes",
+      kicker: "Quem confia a carga",
+      note: "As empresas que operam com a TM SEG.",
+      partners: clientes,
     },
     {
-      title: "Transportadoras",
-      kicker: "Rota",
-      note: "Quem roda o trecho com a operação.",
-      partners: transportadoras,
-    },
-    {
-      title: "Parceiros GR",
-      kicker: "Risco",
-      note: "Gerenciadoras que acompanham a carga.",
-      partners: parceirosGR,
+      title: "Parceiros",
+      kicker: "Quem apoia a rota",
+      note: "Gerenciadoras e parceiros da operação.",
+      partners: parceiros,
     },
   ];
 
@@ -802,7 +794,7 @@ function PartnersSection() {
             </h2>
           </div>
           <p className="max-w-md text-base leading-relaxed text-black/60 lg:col-span-5 lg:justify-self-end">
-            Embarcadores, transportadoras e gerenciadoras de risco que já estão na operação do Grupo TM SEG.
+            Clientes e parceiros que já estão na operação do Grupo TM SEG.
           </p>
         </motion.div>
 
