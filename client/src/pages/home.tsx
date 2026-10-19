@@ -64,6 +64,7 @@ function Header() {
     ]},
     { label: "Quem Somos", href: "#sobre" },
     { label: "Diferenciais", href: "#diferenciais" },
+    { label: "Clientes", href: "#parceiros" },
     { label: "Orçamento", href: "#contato" },
   ] as { label: string; href: string; submenu?: { label: string; href: string }[] }[];
 
@@ -752,53 +753,36 @@ const parceirosGR = [
   { name: "BRK", url: "https://www.brktecnologia.com.br/", logo: "/images/partners/brk.png" },
 ];
 
-function PartnerLogoRow({ partners }: { partners: { name: string; url: string; logo: string }[] }) {
-  const doubled = [...partners, ...partners];
-  return (
-    <div className="overflow-hidden relative">
-      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#f3efe6] to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#f3efe6] to-transparent z-10" />
-      <div
-        className="flex gap-4 animate-scroll-left"
-        style={{ width: "max-content" }}
-      >
-        {doubled.map((partner, i) => (
-          <a
-            key={`${partner.name}-${i}`}
-            href={partner.url}
-            target={partner.url !== "#" ? "_blank" : undefined}
-            rel={partner.url !== "#" ? "noopener noreferrer" : undefined}
-            className="flex h-24 w-40 flex-shrink-0 items-center justify-center rounded-sm border border-black/5 bg-white p-4 shadow-[0_10px_24px_-18px_rgba(0,0,0,0.45)] transition-transform duration-300 hover:-translate-y-1"
-            data-testid={`partner-logo-${partner.name.toLowerCase().replace(/\s+/g, "-")}-${i}`}
-          >
-            <img
-              src={partner.logo}
-              alt={partner.name}
-              className="max-h-full max-w-full object-contain"
-              loading="lazy"
-            />
-          </a>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function PartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const reduceMotion = useReducedMotion();
 
   const categories = [
-    { title: "Embarcadores", partners: embarcadores },
-    { title: "Transportadoras", partners: transportadoras },
-    { title: "Parceiros GR", partners: parceirosGR },
+    {
+      title: "Embarcadores",
+      kicker: "Clientes",
+      note: "As marcas que colocam a carga na estrada.",
+      partners: embarcadores,
+    },
+    {
+      title: "Transportadoras",
+      kicker: "Rota",
+      note: "Quem roda o trecho com a operação.",
+      partners: transportadoras,
+    },
+    {
+      title: "Parceiros GR",
+      kicker: "Risco",
+      note: "Gerenciadoras que acompanham a carga.",
+      partners: parceirosGR,
+    },
   ];
 
   return (
     <section
       id="parceiros"
-      className="bg-[#f3efe6] py-24"
+      className="bg-[#f3efe6] py-24 text-[#161616]"
       data-testid="section-partners"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
@@ -806,29 +790,66 @@ function PartnersSection() {
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-14"
+          className="mb-16 grid items-end gap-8 lg:grid-cols-12"
         >
-          <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.28em] text-[#d0121a]">
-            <span className="h-px w-10 bg-[#d0121a]" />
-            Quem já opera com a gente
+          <div className="lg:col-span-7">
+            <p className="mb-4 flex items-center gap-3 text-[12px] uppercase tracking-[0.28em] text-[#d0121a]">
+              <span className="h-px w-10 bg-[#d0121a]" />
+              Quem já opera com a gente
+            </p>
+            <h2 className="font-display text-5xl uppercase leading-[0.9] sm:text-6xl lg:text-7xl" data-testid="text-partners-title">
+              Clientes e parceiros
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-relaxed text-black/60 lg:col-span-5 lg:justify-self-end">
+            Embarcadores, transportadoras e gerenciadoras de risco que já estão na operação do Grupo TM SEG.
           </p>
-          <h2 className="font-display text-5xl uppercase leading-[0.9] text-[#161616] sm:text-6xl" data-testid="text-partners-title">
-            Nossos parceiros
-          </h2>
         </motion.div>
 
-        <div className="space-y-12">
+        <div className="space-y-16">
           {categories.map((category, index) => (
             <motion.div
               key={category.title}
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: index * 0.1 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
             >
-              <h3 className="mb-5 font-display text-sm uppercase tracking-[0.22em] text-[#161616]/70" data-testid={`text-partner-category-${index}`}>
-                {category.title}
-              </h3>
-              <PartnerLogoRow partners={category.partners} />
+              <div className="mb-6 flex flex-col gap-3 border-b border-black/10 pb-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="font-display text-sm uppercase tracking-[0.2em] text-[#d0121a]">
+                    0{index + 1} · {category.kicker}
+                  </p>
+                  <h3 className="mt-1 font-display text-3xl uppercase leading-none sm:text-4xl" data-testid={`text-partner-category-${index}`}>
+                    {category.title}
+                  </h3>
+                </div>
+                <p className="max-w-xs text-sm leading-relaxed text-black/55">{category.note}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                {category.partners.map((partner, partnerIndex) => (
+                  <a
+                    key={partner.name}
+                    href={partner.url}
+                    target={partner.url !== "#" ? "_blank" : undefined}
+                    rel={partner.url !== "#" ? "noopener noreferrer" : undefined}
+                    className="group flex min-h-[158px] flex-col items-center justify-between border border-black/10 bg-white px-4 py-5 transition duration-300 hover:-translate-y-1 hover:border-[#d0121a]/50 hover:shadow-[0_18px_30px_-22px_rgba(208,18,26,0.7)]"
+                    data-testid={`partner-logo-${partner.name.toLowerCase().replace(/\s+/g, "-")}-${partnerIndex}`}
+                  >
+                    <span className="flex h-16 w-full items-center justify-center">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-14 w-full object-contain"
+                        loading="lazy"
+                      />
+                    </span>
+                    <span className="mt-4 text-center text-[11px] uppercase tracking-[0.16em] text-black/45 transition-colors group-hover:text-[#d0121a]">
+                      {partner.name}
+                    </span>
+                  </a>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
@@ -1422,6 +1443,11 @@ function Footer() {
               <li>
                 <a href="#diferenciais" className="text-sm text-white/50 transition-colors hover:text-white" data-testid="link-footer-differentials">
                   Diferenciais
+                </a>
+              </li>
+              <li>
+                <a href="#parceiros" className="text-sm text-white/50 transition-colors hover:text-white" data-testid="link-footer-partners">
+                  Clientes
                 </a>
               </li>
               <li>
