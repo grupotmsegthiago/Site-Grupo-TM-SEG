@@ -169,8 +169,8 @@ export default function CadastroOperacional() {
   };
 
   return (
-    <div className="min-h-screen bg-[#000000]">
-      <header className="bg-[#000000]/95 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
+    <div className="min-h-screen bg-[#0c0d10]">
+      <header className="bg-[#0c0d10]/95 backdrop-blur-md border-b border-[#d0121a]/40 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <Link href="/" className="flex items-center gap-3" data-testid="link-logo-home">
@@ -202,13 +202,11 @@ export default function CadastroOperacional() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-600/30 rounded-full px-4 py-2 mb-6">
-              <Briefcase className="w-4 h-4 text-red-500" />
-              <span className="text-red-500 text-sm font-medium uppercase tracking-wider">
-                Cadastro de Prestador
-              </span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-cadastro-title">
+            <p className="mb-4 flex items-center justify-center gap-3 text-[12px] uppercase tracking-[0.28em] text-[#d0121a]">
+              <Briefcase className="h-4 w-4" />
+              Cadastro de Prestador
+            </p>
+            <h1 className="font-display text-4xl uppercase leading-[0.92] text-white sm:text-5xl lg:text-6xl mb-4" data-testid="text-cadastro-title">
               Cadastro Operacional
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -222,7 +220,7 @@ export default function CadastroOperacional() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-[#1a1a1a] rounded-lg border border-white/5 p-8" data-testid="card-cadastro-form">
+            <div className="bg-[#14161c] rounded-sm border border-white/10 p-8 shadow-[0_30px_60px_-36px_rgba(0,0,0,0.8)]" data-testid="card-cadastro-form">
               {submitted ? (
                 <div className="text-center py-16" data-testid="cadastro-success">
                   <CheckCircle2 className="w-20 h-20 text-green-400 mx-auto mb-6" />

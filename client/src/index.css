@@ -42,8 +42,9 @@
   --chart-3: 0 100% 50%;
   --chart-4: 358 38% 67%;
   --chart-5: 0 0% 58%;
-  --font-sans: 'Poppins', sans-serif;
-  --font-serif: Georgia, serif;
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-display: 'Oswald', sans-serif;
   --font-mono: Menlo, monospace;
   --radius: .5rem;
   --shadow-2xs: 0px 2px 0px 0px hsl(0 0% 0% / 0.00);
@@ -238,4 +239,50 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Textura leve de impressão, para o fundo não ficar chapado. */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.45) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+.route-line {
+  stroke-dasharray: 7 9;
+  animation: route-dash 2.8s linear infinite;
+}
+
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+.text-extrude {
+  text-shadow:
+    1px 1px 0 #8d0d14,
+    2px 2px 0 #8d0d14,
+    3px 3px 0 #6d0a10,
+    6px 10px 18px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-line,
+  .animate-scroll-left {
+    animation: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }
